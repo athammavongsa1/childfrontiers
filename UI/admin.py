@@ -1,5 +1,5 @@
 from django.contrib import admin
-from data_entry.models import Client, DataSource, Employee, EmployeeProject, Participant, Project, Question, QuestionVignette, Response, Vignette
+from UI.models import Client, DataSource, Employee, EmployeeProject, Participant, Project, Question, QuestionVignette, Response, Vignette
 
 # Register your models here.
 admin.site.register(Client)

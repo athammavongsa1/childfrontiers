@@ -15,16 +15,13 @@
       {% block sidebar %}
         <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'create-client' %}">Add Client</a></li>
-            <li><a href="{% url 'clients' %}">List Clients</a></li>
-          <li><a href="">Add project</a></li>
-          <li><a href="">Add project</a></li>
-          <li><a href="">Add employee</a></li>
-          <li><a href="">Add data source</a></li>
-            <li><a href="">Add response</a></li>
-        <li><a href="">Add question</a></li>
-        <li><a href="">Add vignette</a></li>
-        <li><a href="">Add participant</a></li>
+            <li><a href="{% url 'client_list' %}">Clients</a></li>
+          <li><a href="">Projects</a></li>
+          <li><a href="">Employees</a></li>
+          <li><a href="">Data sources</a></li>
+        <li><a href="">Questions</a></li>
+        <li><a href="">Vignettes</a></li>
+        <li><a href="">Participants</a></li>
         </ul>
      {% endblock %}
       </div>

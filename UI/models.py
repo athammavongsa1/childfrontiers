@@ -8,12 +8,24 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 
 from django.db import models
+from django.urls import reverse
 
 
 class Client(models.Model):
+    client_types = (
+        ('government', 'government'),
+        ('NGO', 'NGO'),
+        ('UN', 'UN'),
+        ('foundation', 'foundation'),
+        ('private sector', 'private_sector')
+    )
+
     client_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50)
-    type = models.CharField(max_length=14, blank=True, null=True)
+    name = models.CharField(max_length=50, blank=False, null=False)
+    type = models.CharField(max_length=50, choices=client_types, blank=False, null=False)
+
+    def get_absolute_url(self):
+        return reverse('client_detail', kwargs={'pk': self.pk})
 
     class Meta:
         managed = False

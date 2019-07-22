@@ -24,14 +24,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-# Directs url requests for data_entry to data_entry app
+# Directs url requests for UI to UI app
 urlpatterns += [
-    path('data_entry/', include('data_entry.urls')),
+    path('UI/', include('UI.urls')),
 ]
 
 #Add URL maps to redirect the base URL to our application
 urlpatterns += [
-    path('', RedirectView.as_view(url='/data_entry/', permanent=True)),
+    path('', RedirectView.as_view(url='/UI/', permanent=True)),
 ]
 
 # Use static() to add url mapping to serve static files during development (only)

@@ -6,11 +6,12 @@
   <ul>
     {% for client in client_list %}
       <li>
-        {{ client.name }}, {{client.type}}
+        <a href="{{ client.get_absolute_url }}">{{ client.name }}</a>
       </li>
     {% endfor %}
   </ul>
   {% else %}
     <p>There are no clients in the library.</p>
-  {% endif %}       
+  {% endif %}
+    <p><a href="{% url 'client_create' %}" class="btn btn-secondary" >Add Client</a></p>
 {% endblock %}
