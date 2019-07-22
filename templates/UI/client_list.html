@@ -5,9 +5,9 @@
   {% if client_list %}
   <ul>
     {% for client in client_list %}
-      <li>
+      <p>
         <a href="{{ client.get_absolute_url }}">{{ client.name }}</a>
-      </li>
+      </p>
     {% endfor %}
   </ul>
   {% else %}

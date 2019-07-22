@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% comment %}<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -29,4 +29,83 @@
     </div>
   </div>
 </body>
+</html>{% endcomment %}
+
+
+<!-- HTML for menu adapted from https://bit.ly/2SIi5WL -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Add additional CSS in static file  -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            width: 166px;
+            position: fixed;
+            z-index: 1;
+            top: 20px;
+            left: 10px;
+            background: #eee;
+            overflow-x: hidden;
+            padding: 8px 0;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #2196F3;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #064579;
+        }
+
+        .main {
+            margin-left: 175px; /* Same width as the sidebar + left position in px */
+            font-size: 20px; /* Increased text to enable scrolling */
+            padding: 15px 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidenav">
+    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url 'client_list' %}">Clients</a>
+    <a href="">Projects</a>
+    <a href="">Employees</a>
+    <a href="">Data sources</a>
+    <a href="">Questions</a>
+    <a href="">Vignettes</a>
+    <a href="">Participants</a>
+</div>
+
+<div class="main">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
 </html>
+
