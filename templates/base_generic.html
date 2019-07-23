@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- HTML layout adapted from https://bit.ly/2LA3Y2F under MIT license-->
+
 <head>
 
     <meta charset="utf-8">
@@ -35,7 +35,7 @@
         <div class="list-group list-group-flush">
             <a href="{% url 'index' %}" class="list-group-item list-group-item-action bg-light">Home</a>
             <a href="{% url 'project_list' %}" class="list-group-item list-group-item-action bg-light">Projects</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Data sources</a>
+            <a href="{% url 'data_source_list' %}" class="list-group-item list-group-item-action bg-light">Data sources</a>
             <a href="{% url 'client_list' %}" class="list-group-item list-group-item-action bg-light">Clients</a>
             <a href="{% url 'employee_list' %}" class="list-group-item list-group-item-action bg-light">Employees</a>
             <a href="{% url 'question_list' %}" class="list-group-item list-group-item-action bg-light">Questions</a>

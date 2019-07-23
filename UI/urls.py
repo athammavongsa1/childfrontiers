@@ -5,7 +5,7 @@ urlpatterns = [
     path('', views.index, name='index')
 ]
 
-# Adding paths for viewing and managing clients
+# Add paths for viewing and managing clients
 urlpatterns += [
     path('client/create/', views.ClientCreate.as_view(), name='client_create'),
     path('client/<int:pk>/update/', views.ClientUpdate.as_view(), name='client_update'),
@@ -14,7 +14,7 @@ urlpatterns += [
     path('client/list', views.ClientListView.as_view(), name='client_list')
 ]
 
-# Adding paths for viewing and managing employees
+# Add paths for viewing and managing employees
 urlpatterns += [
     path('employee/create/', views.EmployeeCreate.as_view(), name='employee_create'),
     path('employee/<int:pk>/update/', views.EmployeeUpdate.as_view(), name='employee_update'),
@@ -23,7 +23,7 @@ urlpatterns += [
     path('employee/list', views.EmployeeListView.as_view(), name='employee_list')
 ]
 
-# Adding paths for viewing and managing projects
+# Add paths for viewing and managing projects
 urlpatterns += [
     path('project/create/', views.ProjectCreate.as_view(), name='project_create'),
     path('project/<int:pk>/update/', views.ProjectUpdate.as_view(), name='project_update'),
@@ -32,7 +32,7 @@ urlpatterns += [
     path('project/list', views.ProjectListView.as_view(), name='project_list')
 ]
 
-# Adding paths for viewing and managing questions
+# Add paths for viewing and managing questions
 urlpatterns += [
     path('question/create/', views.QuestionCreate.as_view(), name='question_create'),
     path('question/<int:pk>/update/', views.QuestionUpdate.as_view(), name='question_update'),
@@ -41,13 +41,22 @@ urlpatterns += [
     path('question/list', views.QuestionListView.as_view(), name='question_list')
 ]
 
-# Adding paths for viewing and managing vignettes
+# Add paths for viewing and managing vignettes
 urlpatterns += [
     path('vignette/create/', views.VignetteCreate.as_view(), name='vignette_create'),
     path('vignette/<int:pk>/update/', views.VignetteUpdate.as_view(), name='vignette_update'),
     path('vignette/<int:pk>/delete/', views.VignetteDelete.as_view(), name='vignette_delete'),
     path('vignette/<int:pk>', views.VignetteDetailView.as_view(), name='vignette_detail'),
     path('vignette/list', views.VignetteListView.as_view(), name='vignette_list')
+]
+
+# Add paths for viewing and managing data_sources
+urlpatterns += [
+    path('data_source/create/', views.DataSourceCreate.as_view(), name='data_source_create'),
+    path('data_source/<int:pk>/update/', views.DataSourceUpdate.as_view(), name='data_source_update'),
+    path('data_source/<int:pk>/delete/', views.DataSourceDelete.as_view(), name='data_source_delete'),
+    path('data_source/<int:pk>', views.DataSourceDetailView.as_view(), name='data_source_detail'),
+    path('data_source/list', views.DataSourceListView.as_view(), name='data_source_list')
 ]
 
 
