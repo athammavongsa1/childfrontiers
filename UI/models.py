@@ -113,6 +113,13 @@ class Question(models.Model):
     question_text = models.CharField(max_length=255)
     question_rank = models.IntegerField(blank=True, null=True)
 
+    def get_absolute_url(self):
+        return reverse('question_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return '%s' % self.question_text
+
+
     class Meta:
         managed = False
         db_table = 'question'

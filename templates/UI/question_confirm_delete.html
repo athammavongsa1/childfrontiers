@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <h1>Delete Question</h1>
+
+    <p>Are you sure you want to delete the question: {{ question.question_text }}?</p>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Yes, delete" class="btn btn-secondary">
+        <a href="{{ question.get_absolute_url }}" id="Cancel" name="Cancel" class="btn btn-secondary">Cancel</a>
+    </form>
+
+{% endblock %}

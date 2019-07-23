@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Question List</h2>
+    {% if question_list %}
+        <ul>
+            {% for question in question_list %}
+                <p>
+                    <a href="{{ question.get_absolute_url }}">{{ question.question_text }}</a>
+                </p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no questions in the library.</p>
+    {% endif %}
+    <p><a href="{% url 'question_create' %}" class="btn btn-secondary">Add Question</a></p>
+{% endblock %}

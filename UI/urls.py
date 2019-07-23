@@ -32,3 +32,13 @@ urlpatterns += [
     path('project/list', views.ProjectListView.as_view(), name='project_list')
 ]
 
+# Adding paths for viewing and managing questions
+urlpatterns += [
+    path('question/create/', views.QuestionCreate.as_view(), name='question_create'),
+    path('question/<int:pk>/update/', views.QuestionUpdate.as_view(), name='question_update'),
+    path('question/<int:pk>/delete/', views.QuestionDelete.as_view(), name='question_delete'),
+    path('question/<int:pk>', views.QuestionDetailView.as_view(), name='question_detail'),
+    path('question/list', views.QuestionListView.as_view(), name='question_list')
+]
+
+

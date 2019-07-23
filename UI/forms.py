@@ -1,5 +1,5 @@
 from django.forms import ModelForm, ModelChoiceField
-from UI.models import Client, Employee, Project
+from UI.models import Client, Employee, Project, Question
 
 class CreateClientModelForm(ModelForm):
    class Meta:
@@ -17,3 +17,8 @@ class CreateProjectModelForm(ModelForm):
     class Meta:
        model = Project
        fields = ['name', 'project_type', 'completion_date', 'country', 'client']
+
+class CreateQuestionModelForm(ModelForm):
+   class Meta:
+       model = Question
+       fields = ['question_id', 'question_text', 'question_rank']

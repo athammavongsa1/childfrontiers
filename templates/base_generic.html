@@ -34,11 +34,11 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="list-group list-group-flush">
             <a href="{% url 'index' %}" class="list-group-item list-group-item-action bg-light">Home</a>
-            <a href="{% url 'client_list' %}" class="list-group-item list-group-item-action bg-light">Clients</a>
             <a href="{% url 'project_list' %}" class="list-group-item list-group-item-action bg-light">Projects</a>
-            <a href="{% url 'employee_list' %}" class="list-group-item list-group-item-action bg-light">Employees</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">Data sources</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Questions</a>
+            <a href="{% url 'client_list' %}" class="list-group-item list-group-item-action bg-light">Clients</a>
+            <a href="{% url 'employee_list' %}" class="list-group-item list-group-item-action bg-light">Employees</a>
+            <a href="{% url 'question_list' %}" class="list-group-item list-group-item-action bg-light">Questions</a>
             <a href="#" class="list-group-item list-group-item-action bg-light">Vignettes</a>
         </div>
     </div>

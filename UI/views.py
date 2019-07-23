@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from UI.forms import CreateClientModelForm
 
-from UI.models import Client, Employee, Project
+from UI.models import Client, Employee, Project, Question
 
 
 # Homepage view
@@ -83,6 +83,28 @@ class ProjectDetailView(generic.DetailView):
 
 class ProjectListView(generic.ListView):
     model = Project
+
+#Views for question
+class QuestionCreate(CreateView):
+    model = Question
+    fields = '__all__'
+    success_url = reverse_lazy('question_list')
+
+class QuestionUpdate(UpdateView):
+    model = Question
+    fields = ['question_id', 'question_text', 'question_rank']
+
+class QuestionDelete(DeleteView):
+    model = Question
+    success_url = reverse_lazy('question_list')
+
+class QuestionDetailView(generic.DetailView):
+    model = Question
+
+class QuestionListView(generic.ListView):
+    model = Question
+
+
 
 
 
