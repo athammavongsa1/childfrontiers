@@ -2,14 +2,14 @@
 
 {% block content %}
 
-    <h1>Delete Client</h1>
+    <h1>Delete Employee</h1>
 
-    <p>Are you sure you want to delete the client: {{ client.name }}?</p>
+    <p>Are you sure you want to delete the employee: {{ employee.name }}?</p>
 
     <form action="" method="POST">
         {% csrf_token %}
         <input type="submit" value="Yes, delete" class="btn btn-secondary">
-        <a href="{{ client.get_absolute_url }}" id="Cancel" name="Cancel" class="btn btn-secondary">Cancel</a>
+        <a href="{{ employee.get_absolute_url }}" id="Cancel" name="Cancel" class="btn btn-secondary">Cancel</a>
     </form>
 
 {% endblock %}

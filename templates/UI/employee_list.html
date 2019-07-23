@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Employee List</h2>
+    {% if employee_list %}
+        <ul>
+            {% for employee in employee_list %}
+                <p>
+                    <a href="{{ employee.get_absolute_url }}">{{ employee.first_name }} {{ employee.last_name }}</a>
+                </p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no employees in the library.</p>
+    {% endif %}
+    <p><a href="{% url 'employee_create' %}" class="btn btn-secondary">Add Employee</a></p>
+{% endblock %}

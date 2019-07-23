@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Project Details</h2>
+
+    <p><strong>Name:</strong> {{ project.name }}</p>
+    <p><strong>Type:</strong> {{ project.project_type }}</p>
+    <p><strong>Completion Date:</strong> {{ project.completion_date }}</p>
+    <p><strong>Country:</strong> {{ project.country }}</p>
+    <p><strong>Client:</strong> {{ project.client }}</p>
+    <p><a href="{{ project.project_id }}/update/" class="btn btn-secondary">Modify project</a>
+        <a href="{{ project.project_id }}/delete/" class="btn btn-secondary">Delete project</a></p>
+
+
+{% endblock %}

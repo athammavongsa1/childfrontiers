@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Project List</h2>
+    {% if project_list %}
+        <ul>
+            {% for project in project_list %}
+                <p>
+                    <a href="{{ project.get_absolute_url }}">{{ project.name }}</a>
+                </p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no projects in the library.</p>
+    {% endif %}
+    <p><a href="{% url 'project_create' %}" class="btn btn-secondary">Add Project</a></p>
+{% endblock %}

@@ -27,6 +27,9 @@ class Client(models.Model):
     def get_absolute_url(self):
         return reverse('client_detail', kwargs={'pk': self.pk})
 
+    def __str__(self):
+        return '%s' % self.name
+
     class Meta:
         managed = False
         db_table = 'client'
@@ -47,10 +50,20 @@ class DataSource(models.Model):
 
 
 class Employee(models.Model):
+    job_title_types = (('Director', 'Director'),
+                 ('Senior Associate', 'Senior Associate'),
+                 ('Collaborator', 'Collaborator'),
+                 ('Head of Knowledge Management and Innovation', 'Head of Knowledge Management and Innovation'),
+                 ('Head of Research and Evaluation', 'Head of Research and Evaluation'),
+                 ('National Researcher', 'National Researcher'))
+
     employee_id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    job_title = models.CharField(max_length=43)
+    first_name = models.CharField(max_length=50, blank=False, null=False)
+    last_name = models.CharField(max_length=50, blank=False, null=False)
+    job_title = models.CharField(max_length=50, choices=job_title_types, blank=False, null=False)
+
+    def get_absolute_url(self):
+        return reverse('employee_detail', kwargs={'pk': self.pk})
 
     class Meta:
         managed = False
@@ -76,12 +89,19 @@ class Participant(models.Model):
 
 
 class Project(models.Model):
+    project_types = (('research', 'research'), ('evaluation', 'evaluation'), ('system mapping', 'system mapping'),
+                     ('technical assistance', 'technical assistance'))
+    project_countries = (('Indonesia', 'Indonesia'), ('Laos', 'Laos'), ('Malaysia', 'Malaysia'), ('Nigeria', 'Nigeria'))
+
     project_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    project_type = models.CharField(max_length=20, blank=True, null=True)
-    completion_type = models.DateField()
-    country = models.CharField(max_length=9)
+    project_type = models.CharField(max_length=20, choices=project_types, blank=False, null=False)
+    completion_date = models.DateField(blank=False, null=False)
+    country = models.CharField(max_length=50, choices=project_countries, blank=False, null=False)
     client = models.ForeignKey(Client, models.DO_NOTHING)
+
+    def get_absolute_url(self):
+        return reverse('project_detail', kwargs={'pk': self.pk})
 
     class Meta:
         managed = False

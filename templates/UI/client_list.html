@@ -1,17 +1,17 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h2>Client List</h2>
-  {% if client_list %}
-  <ul>
-    {% for client in client_list %}
-      <p>
-        <a href="{{ client.get_absolute_url }}">{{ client.name }}</a>
-      </p>
-    {% endfor %}
-  </ul>
-  {% else %}
-    <p>There are no clients in the library.</p>
-  {% endif %}
-    <p><a href="{% url 'client_create' %}" class="btn btn-secondary" >Add Client</a></p>
+    <h2>Client List</h2>
+    {% if client_list %}
+        <ul>
+            {% for client in client_list %}
+                <p>
+                    <a href="{{ client.get_absolute_url }}">{{ client.name }}</a>
+                </p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no clients in the library.</p>
+    {% endif %}
+    <p><a href="{% url 'client_create' %}" class="btn btn-secondary">Add Client</a></p>
 {% endblock %}
