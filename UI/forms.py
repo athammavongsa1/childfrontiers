@@ -1,5 +1,5 @@
 from django.forms import ModelForm, ModelChoiceField
-from UI.models import Client, Employee, Project, Question
+from UI.models import Client, Employee, Project, Question, Vignette
 
 class CreateClientModelForm(ModelForm):
    class Meta:
@@ -22,3 +22,8 @@ class CreateQuestionModelForm(ModelForm):
    class Meta:
        model = Question
        fields = ['question_id', 'question_text', 'question_rank']
+
+class CreateVignetteModelForm(ModelForm):
+   class Meta:
+       model = Vignette
+       fields = ['vignette_type', 'vignette_description']

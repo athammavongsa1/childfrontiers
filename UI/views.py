@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from UI.forms import CreateClientModelForm
 
-from UI.models import Client, Employee, Project, Question
+from UI.models import Client, Employee, Project, Question, Vignette
 
 
 # Homepage view
@@ -103,6 +103,26 @@ class QuestionDetailView(generic.DetailView):
 
 class QuestionListView(generic.ListView):
     model = Question
+    
+#Views for vignette
+class VignetteCreate(CreateView):
+    model = Vignette
+    fields = '__all__'
+    success_url = reverse_lazy('vignette_list')
+
+class VignetteUpdate(UpdateView):
+    model = Vignette
+    fields = ['vignette_type', 'vignette_description']
+
+class VignetteDelete(DeleteView):
+    model = Vignette
+    success_url = reverse_lazy('vignette_list')
+
+class VignetteDetailView(generic.DetailView):
+    model = Vignette
+
+class VignetteListView(generic.ListView):
+    model = Vignette
 
 
 

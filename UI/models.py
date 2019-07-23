@@ -149,9 +149,17 @@ class Response(models.Model):
 
 
 class Vignette(models.Model):
+    vignette_types = (('sexual exploitation','sexual exploitation',),('child marriage','child marriage'), ('domestic violence','domestic violence'), ('neglect', 'neglect'))
+
     vignette_id = models.AutoField(primary_key=True)
-    vignette_type = models.CharField(max_length=19, blank=True, null=True)
+    vignette_type = models.CharField(max_length=50, choices=vignette_types, blank=False, null=False)
     vignette_description = models.CharField(max_length=200, blank=True, null=True)
+
+    def get_absolute_url(self):
+        return reverse('vignette_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return '%s' % self.vignette_description
 
     class Meta:
         managed = False

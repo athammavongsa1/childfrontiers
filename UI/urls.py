@@ -41,4 +41,13 @@ urlpatterns += [
     path('question/list', views.QuestionListView.as_view(), name='question_list')
 ]
 
+# Adding paths for viewing and managing vignettes
+urlpatterns += [
+    path('vignette/create/', views.VignetteCreate.as_view(), name='vignette_create'),
+    path('vignette/<int:pk>/update/', views.VignetteUpdate.as_view(), name='vignette_update'),
+    path('vignette/<int:pk>/delete/', views.VignetteDelete.as_view(), name='vignette_delete'),
+    path('vignette/<int:pk>', views.VignetteDetailView.as_view(), name='vignette_detail'),
+    path('vignette/list', views.VignetteListView.as_view(), name='vignette_list')
+]
+
 

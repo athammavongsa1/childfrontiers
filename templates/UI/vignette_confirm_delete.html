@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <h1>Delete Vignette</h1>
+
+    <p>Are you sure you want to delete the vignette: {{ vignette.vignette_description }}?</p>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Yes, delete" class="btn btn-secondary">
+        <a href="{{ vignette.get_absolute_url }}" id="Cancel" name="Cancel" class="btn btn-secondary">Cancel</a>
+    </form>
+
+{% endblock %}

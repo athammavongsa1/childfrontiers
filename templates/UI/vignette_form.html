@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit" class="btn btn-secondary">
+        <a href="{{ vignette.get_absolute_url }}" id="Cancel" name="Cancel" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

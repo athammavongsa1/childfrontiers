@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Vignette List</h2>
+    {% if vignette_list %}
+        <ul>
+            {% for vignette in vignette_list %}
+                <p>
+                    <a href="{{ vignette.get_absolute_url }}">{{ vignette.vignette_description }}</a>
+                </p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no vignettes in the library.</p>
+    {% endif %}
+    <p><a href="{% url 'vignette_create' %}" class="btn btn-secondary">Add Vignette</a></p>
+{% endblock %}
