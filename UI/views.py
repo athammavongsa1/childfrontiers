@@ -14,15 +14,8 @@ from UI.models import Client, Employee, Project, Question, Vignette
 def index(request):
     """View function for home page of site."""
 
-    # Generate counts of some of the main objects
-    num_clients = Client.objects.all().count()
-
-    context = {
-        'num_clients': num_clients,
-    }
-
     # Render the HTML template index.html with the data in the context variable
-    return render(request, 'index.html', context=context)
+    return render(request, 'index.html')
 
 #Views for client
 class ClientCreate(CreateView):
