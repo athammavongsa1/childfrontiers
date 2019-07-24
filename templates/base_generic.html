@@ -2,6 +2,10 @@
 <html lang="en">
 
 
+{% comment %}
+Layout adapted from https://bit.ly/2LA3Y2F under MIT license
+{% endcomment %}
+
 <head>
 
     <meta charset="utf-8">
@@ -23,8 +27,28 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-dark border-bottom" style="background-color: black !important">
+<nav class="navbar navbar-light bg-dark border-bottom" style="background-color: black !important">
     <img src={% static 'img/logo.png' %} class="rounded mx-auto d-block alt="logo">
+
+    <div class="btn-group">
+        {% if user.is_authenticated %}
+            <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                {{ user.get_username }}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'logout'%}">Logout <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+        {% else %}
+            <a href="{% url 'login'%}" class="btn btn-secondary btn-sm active">Log in</a>
+        {% endif %}
+        </div>
+    </div>
 </nav>
 
 <div class="d-flex" id="wrapper">
@@ -35,7 +59,8 @@
         <div class="list-group list-group-flush">
             <a href="{% url 'index' %}" class="list-group-item list-group-item-action bg-light">Home</a>
             <a href="{% url 'project_list' %}" class="list-group-item list-group-item-action bg-light">Projects</a>
-            <a href="{% url 'data_source_list' %}" class="list-group-item list-group-item-action bg-light">Data sources</a>
+            <a href="{% url 'data_source_list' %}" class="list-group-item list-group-item-action bg-light">Data
+                sources</a>
             <a href="{% url 'client_list' %}" class="list-group-item list-group-item-action bg-light">Clients</a>
             <a href="{% url 'employee_list' %}" class="list-group-item list-group-item-action bg-light">Employees</a>
             <a href="{% url 'question_list' %}" class="list-group-item list-group-item-action bg-light">Questions</a>
@@ -55,7 +80,15 @@
 
 </div>
 <!-- /#wrapper -->
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
 </body>
 
