@@ -134,6 +134,9 @@ class DataSourceDelete(DeleteView):
 class DataSourceDetailView(generic.DetailView):
     model = DataSource
 
+    def response(self):
+        return Response.objects.all()
+
 class DataSourceListView(generic.ListView):
     model = DataSource
     
@@ -141,11 +144,13 @@ class DataSourceListView(generic.ListView):
 class ResponseCreate(CreateView):
     model = Response
     fields = '__all__'
-    success_url = reverse_lazy('response_list')
+    success_url = reverse_lazy('data_source_list')
+
 
 class ResponseUpdate(UpdateView):
     model = Response
-    fields = ['response_type', 'response_description']
+    fields = ['qualitative_response', 'quantitative_response', 'boolean_response', 'participant', 'question',
+                  'data_source']
 
 class ResponseDelete(DeleteView):
     model = Response

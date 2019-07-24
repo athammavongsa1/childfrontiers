@@ -16,10 +16,8 @@
     <p></p>
 
     <p><strong>Responses:</strong></p>
-    {% if response_list %}
         <ul>
-            Reached here
-            {% for response in response_list %}
+            {% for response in view.response %}
                 {% if response.data_source_id == datasource.data_source_id %}
                     <p>
                         <a href="{{ response.get_absolute_url }}">
@@ -29,9 +27,5 @@
             {% endfor %}
         </ul>
 
-    {% else %}
-        <p>There are no responses for this data source.</p>
-    {% endif %}
     <p><a href="{% url 'response_create' %}" class="btn btn-secondary">Add Response</a></p>
-
 {% endblock %}
