@@ -1,14 +1,10 @@
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.urls import reverse
-
-from UI.forms import CreateClientModelForm
-
 from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Response
-
+from django.shortcuts import redirect
 
 # Homepage view
 def index(request):
@@ -125,7 +121,9 @@ class VignetteListView(generic.ListView):
 class DataSourceCreate(CreateView):
     model = DataSource
     fields = '__all__'
-    success_url = reverse_lazy('project_list')
+
+    def get_success_url(self):
+        return reverse('project_detail', kwargs={'pk': self.object.project.project_id})
 
 class DataSourceUpdate(UpdateView):
     model = DataSource
@@ -148,8 +146,9 @@ class DataSourceListView(generic.ListView):
 class ResponseCreate(CreateView):
     model = Response
     fields = '__all__'
-    success_url = reverse_lazy('data_source_list')
 
+    def get_success_url(self):
+        return reverse('data_source_detail', kwargs={'pk': self.object.data_source.data_source_id})
 
 class ResponseUpdate(UpdateView):
     model = Response
