@@ -59,4 +59,13 @@ urlpatterns += [
     path('data_source/list', views.DataSourceListView.as_view(), name='data_source_list')
 ]
 
+# Add paths for viewing and managing responses
+urlpatterns += [
+    path('response/create/', views.ResponseCreate.as_view(), name='response_create'),
+    path('response/<int:pk>/update/', views.ResponseUpdate.as_view(), name='response_update'),
+    path('response/<int:pk>/delete/', views.ResponseDelete.as_view(), name='response_delete'),
+    path('response/<int:pk>', views.ResponseDetailView.as_view(), name='response_detail'),
+    path('response/list', views.ResponseListView.as_view(), name='response_list')
+]
+
 

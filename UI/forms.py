@@ -1,5 +1,5 @@
 from django.forms import ModelForm, ModelChoiceField
-from UI.models import Client, Employee, Project, Question, Vignette, DataSource
+from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Participant, Response
 
 
 class CreateClientModelForm(ModelForm):
@@ -40,3 +40,16 @@ class CreateDataSourceModelForm(ModelForm):
     class Meta:
         model = DataSource
         fields = ['name', 'data_source_type', 'acquisition_date', 'project', 'province', 'district', 'community']
+
+
+class CreateResponseModelForm(ModelForm):
+    participant = ModelChoiceField(queryset=Participant.objects.all(), to_field_name='participant_type',
+                                   empty_label="Select participant")
+    question = ModelChoiceField(queryset=Question.objects.all(), to_field_name='question_text', empty_label="Select question")
+    data_source = ModelChoiceField(queryset=DataSource.objects.all(), to_field_name='name',
+                                   empty_label="Select data source")
+
+    class Meta:
+        model = Response
+        fields = ['qualitative_response', 'quantitative_response', 'boolean_response', 'participant', 'question',
+                  'data_source']

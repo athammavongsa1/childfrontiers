@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Response List</h2>
+    {% if response_list %}
+        <ul>
+            {% for response in response_list %}
+                <p>
+                    <a href="{{ response.get_absolute_url }}">{{ response.qualitative_response|default_if_none:"" }}{{ response.quantitative_response|default_if_none:"" }}{{ response.boolean_response|default_if_none:"" }}</a>
+                </p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no responses in the library.</p>
+    {% endif %}
+    <p><a href="{% url 'response_create' %}" class="btn btn-secondary">Add Response</a></p>
+{% endblock %}

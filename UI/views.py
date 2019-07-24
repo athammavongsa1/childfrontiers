@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from UI.forms import CreateClientModelForm
 
-from UI.models import Client, Employee, Project, Question, Vignette, DataSource
+from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Response
 
 
 # Homepage view
@@ -136,6 +136,26 @@ class DataSourceDetailView(generic.DetailView):
 
 class DataSourceListView(generic.ListView):
     model = DataSource
+    
+#Views for response
+class ResponseCreate(CreateView):
+    model = Response
+    fields = '__all__'
+    success_url = reverse_lazy('response_list')
+
+class ResponseUpdate(UpdateView):
+    model = Response
+    fields = ['response_type', 'response_description']
+
+class ResponseDelete(DeleteView):
+    model = Response
+    success_url = reverse_lazy('response_list')
+
+class ResponseDetailView(generic.DetailView):
+    model = Response
+
+class ResponseListView(generic.ListView):
+    model = Response
 
 
 

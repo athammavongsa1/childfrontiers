@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Response Details</h2>
+
+    <p><strong>Question:</strong> {{ response.question }}</p>
+    <p><strong>Response:</strong> {{ response.qualitative_response|default_if_none:"" }}{{ response.quantitative_response|default_if_none:"" }}{{ response.boolean_response|default_if_none:"" }}</p>
+    <p><strong>Response given by:</strong> {{ response.participant }}</p>
+    <p><strong>Associate data source:</strong> {{ response.data_source }}</p>
+    <p><a href="{{ response.response_id }}/update/" class="btn btn-secondary">Modify response</a>
+        <a href="{{ response.response_id }}/delete/" class="btn btn-secondary">Delete response</a></p>
+
+{% endblock %}

@@ -116,7 +116,7 @@ class EmployeeProject(models.Model):
 
 class Participant(models.Model):
     participant_id = models.AutoField(primary_key=True)
-    participant_type = models.CharField(max_length=30, blank=True, null=True)
+    participant_type = models.CharField(max_length=30, blank=False, null=False)
 
     def __str__(self):
         return '%s' % self.participant_type
@@ -163,12 +163,15 @@ class QuestionVignette(models.Model):
 
 class Response(models.Model):
     response_id = models.AutoField(primary_key=True)
-    qualitative_response = models.CharField(max_length=255)
-    quantitative_response = models.IntegerField()
-    boolean_response = models.IntegerField()
+    qualitative_response = models.CharField(max_length=255, blank=True, null=True)
+    quantitative_response = models.IntegerField(blank=True, null=True)
+    boolean_response = models.IntegerField(blank=True, null=True)
     participant = models.ForeignKey(Participant, models.DO_NOTHING)
     question = models.ForeignKey(Question, models.DO_NOTHING)
     data_source = models.ForeignKey(DataSource, models.DO_NOTHING)
+
+    def get_absolute_url(self):
+        return reverse('response_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return '%s %d %d' % (self.qualitative_response, self.quantitative_response, self.boolean_response)
