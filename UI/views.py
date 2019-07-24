@@ -74,8 +74,12 @@ class ProjectDelete(DeleteView):
 class ProjectDetailView(generic.DetailView):
     model = Project
 
+    def data_source(self):
+        return DataSource.objects.all()
+
 class ProjectListView(generic.ListView):
     model = Project
+
 
 #Views for question
 class QuestionCreate(CreateView):
@@ -121,7 +125,7 @@ class VignetteListView(generic.ListView):
 class DataSourceCreate(CreateView):
     model = DataSource
     fields = '__all__'
-    success_url = reverse_lazy('data_source_list')
+    success_url = reverse_lazy('project_list')
 
 class DataSourceUpdate(UpdateView):
     model = DataSource
