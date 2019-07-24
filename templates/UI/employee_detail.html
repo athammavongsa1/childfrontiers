@@ -3,9 +3,11 @@
 {% block content %}
     <h2>Employee Details</h2>
 
-    <p><strong>First Name:</strong> {{ employee.first_name }}</p>
-    <p><strong>Last Name:</strong> {{ employee.last_name }}</p>
-    <p><strong>Position:</strong> {{ employee.job_title }}</p>
+    <ul>
+        <p><strong>First Name:</strong> {{ employee.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ employee.last_name }}</p>
+        <p><strong>Position:</strong> {{ employee.job_title }}</p>
+    </ul>
     <p><a href="{{ employee.employee_id }}/update/" class="btn btn-secondary">Modify employee</a>
         <a href="{{ employee.employee_id }}/delete/" class="btn btn-secondary">Delete employee</a></p>
 

@@ -1,15 +1,20 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h2>Vignette List</h2>
     {% if vignette_list %}
-        <ul>
+        <table class="table">
+            <tr>
+                <th>Vignette</th>
+                <th>Vignette type</th>
+            </tr>
             {% for vignette in vignette_list %}
-                <p>
-                    <a href="{{ vignette.get_absolute_url }}">{{ vignette.vignette_description }}</a>
-                </p>
+                <tr>
+                    <td><a href="{{ vignette.get_absolute_url }}">{{ vignette.vignette_description }}</a></td>
+                    <td>{{ vignette.vignette_type }}</td>
+
+                </tr>
             {% endfor %}
-        </ul>
+        </table>
     {% else %}
         <p>There are no vignettes in the library.</p>
     {% endif %}

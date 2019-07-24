@@ -1,15 +1,24 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h2>Response List</h2>
     {% if response_list %}
-        <ul>
+        <table class="table">
+            <tr>
+                <th>Question</th>
+                <th>Response</th>
+                <th>Participant</th>
+                <th>Data Source</th>
+            </tr>
             {% for response in response_list %}
-                <p>
-                    <a href="{{ response.get_absolute_url }}">{{ response.qualitative_response|default_if_none:"" }}{{ response.quantitative_response|default_if_none:"" }}{{ response.boolean_response|default_if_none:"" }}</a>
-                </p>
+                <tr>
+                    <td>{{ response.question.question_text }}</td>
+                    <td>
+                        {{ response.qualitative_response|default_if_none:"" }}{{ response.quantitative_response|default_if_none:"" }}{{ response.boolean_response|default_if_none:"" }}</td>
+                    <td>{{ response.participant.participant_type }}</td>
+                    <td>{{ response.data_source.name }}</td>
+                </tr>
             {% endfor %}
-        </ul>
+        </table>
     {% else %}
         <p>There are no responses in the library.</p>
     {% endif %}

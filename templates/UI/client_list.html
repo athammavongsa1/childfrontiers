@@ -1,15 +1,19 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h2>Client List</h2>
     {% if client_list %}
-        <ul>
+        <table class="table">
+            <tr>
+                <th>Client name</th>
+                <th>Type</th>
+            </tr>
             {% for client in client_list %}
-                <p>
-                    <a href="{{ client.get_absolute_url }}">{{ client.name }}</a>
-                </p>
+                <tr>
+                    <td><a href="{{ client.get_absolute_url }}">{{ client.name }}</a></td>
+                    <td>{{ client.type }}</td>
+                </tr>
             {% endfor %}
-        </ul>
+        </table>
     {% else %}
         <p>There are no clients in the library.</p>
     {% endif %}

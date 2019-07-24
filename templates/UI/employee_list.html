@@ -1,15 +1,19 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h2>Employee List</h2>
     {% if employee_list %}
-        <ul>
+        <table class="table">
+            <tr>
+                <th>First name</th>
+                <th>Last Name</th>
+            </tr>
             {% for employee in employee_list %}
-                <p>
-                    <a href="{{ employee.get_absolute_url }}">{{ employee.first_name }} {{ employee.last_name }}</a>
-                </p>
+                <tr>
+                    <td><a href="{{ employee.get_absolute_url }}">{{ employee.first_name }}</a></td>
+                    <td>{{ employee.last_name }}</td>
+                </tr>
             {% endfor %}
-        </ul>
+        </table>
     {% else %}
         <p>There are no employees in the library.</p>
     {% endif %}

@@ -3,8 +3,10 @@
 {% block content %}
     <h2>Vignette Details</h2>
 
-    <p><strong>Description:</strong> {{ vignette.vignette_description }}</p>
-    <p><strong>Type:</strong> {{ vignette.vignette_type }}</p>
+    <ul>
+        <p><strong>Description:</strong> {{ vignette.vignette_description }}</p>
+        <p><strong>Type:</strong> {{ vignette.vignette_type }}</p>
+    </ul>
     <p><a href="{{ vignette.vignette_id }}/update/" class="btn btn-secondary">Modify vignette</a>
         <a href="{{ vignette.vignette_id }}/delete/" class="btn btn-secondary">Delete vignette</a></p>
 

@@ -3,25 +3,43 @@
 {% block content %}
     <h2>Project Details</h2>
 
-    <p><strong>Name:</strong> {{ project.name }}</p>
-    <p><strong>Type:</strong> {{ project.project_type }}</p>
-    <p><strong>Completion Date:</strong> {{ project.completion_date }}</p>
-    <p><strong>Country:</strong> {{ project.country }}</p>
-    <p><strong>Client:</strong> {{ project.client }}</p>
+    <ul>
+        <p><strong>Name:</strong> {{ project.name }}</p>
+        <p><strong>Type:</strong> {{ project.project_type }}</p>
+        <p><strong>Completion Date:</strong> {{ project.completion_date }}</p>
+        <p><strong>Country:</strong> {{ project.country }}</p>
+        <p><strong>Client:</strong> {{ project.client }}</p>
+    </ul>
     <p><a href="{{ project.project_id }}/update/" class="btn btn-secondary">Modify project</a>
         <a href="{{ project.project_id }}/delete/" class="btn btn-secondary">Delete project</a></p>
-
-    <p><strong>Data Sources:</strong></p>
-        <ul>
+    <br>
+    <h3>Associated Data Sources</h3>
+    <ul>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Acquisition date</th>
+                <th>Province</th>
+                <th>District</th>
+                <th>Community</th>
+            </tr>
             {% for data_source in view.data_source %}
                 {% if data_source.project.name == project.name %}
-                    <p>
-                        <a href="{{ data_source.get_absolute_url }}">
-                            {{ data_source.name }}</a>
-                    </p>
+                    <tr>
+                        <td><a href="{{ data_source.get_absolute_url }}">{{ data_source.name }}</a></td>
+                        <td>{{ data_source.data_source_type }}</td>
+                        <td>{{ data_source.acquisition_date }}</td>
+                        <td>{{ data_source.province|default_if_none:"Not entered" }}</td>
+                        <td>{{ data_source.district|default_if_none:"Not entered" }}</td>
+                        <td>{{ data_source.community|default_if_none:"Not entered" }}</td>
+
+                    </tr>
                 {% endif %}
             {% endfor %}
-        </ul>
+        </table>
+    </ul>
+
 
     <p><a href="{% url 'data_source_create' %}" class="btn btn-secondary">Add data source</a></p>
 
