@@ -40,12 +40,12 @@ Layout adapted from https://bit.ly/2LA3Y2F under MIT license
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'logout'%}">Logout <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
 
         {% else %}
-            <a href="{% url 'login'%}" class="btn btn-secondary btn-sm active">Log in</a>
+            <a href="{% url 'login' %}" class="btn btn-secondary btn-sm active">Log in</a>
         {% endif %}
         </div>
     </div>
@@ -74,6 +74,24 @@ Layout adapted from https://bit.ly/2LA3Y2F under MIT license
     <div id="page-content-wrapper">
         <div class="container-fluid">
             {% block content %}{% endblock %}
+
+            {% block pagination %}
+                {% if is_paginated %}
+                    <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+                    </div>
+                {% endif %}
+            {% endblock %}
         </div>
     </div>
     <!-- /#page-content-wrapper -->

@@ -2,18 +2,22 @@
 
 {% block content %}
     {% if client_list %}
-        <table class="table">
-            <tr>
-                <th>Client name</th>
-                <th>Type</th>
-            </tr>
-            {% for client in client_list %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <td><a href="{{ client.get_absolute_url }}">{{ client.name }}</a></td>
-                    <td>{{ client.type }}</td>
+                    <th>Client name</th>
+                    <th>Type</th>
                 </tr>
-            {% endfor %}
-        </table>
+                </thead>
+                {% for client in client_list %}
+                    <tr>
+                        <td><a href="{{ client.get_absolute_url }}">{{ client.name }}</a></td>
+                        <td>{{ client.type }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     {% else %}
         <p>There are no clients in the library.</p>
     {% endif %}

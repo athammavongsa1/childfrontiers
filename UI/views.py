@@ -32,6 +32,7 @@ class ClientDetailView(generic.DetailView):
 
 class ClientListView(generic.ListView):
     model = Client
+    paginate_by = 10
 
 #Views for employee
 class EmployeeCreate(CreateView):
@@ -52,7 +53,8 @@ class EmployeeDetailView(generic.DetailView):
 
 class EmployeeListView(generic.ListView):
     model = Employee
-    
+    paginate_by = 10
+
 #Views for project
 class ProjectCreate(CreateView):
     model = Project
@@ -75,6 +77,7 @@ class ProjectDetailView(generic.DetailView):
 
 class ProjectListView(generic.ListView):
     model = Project
+    paginate_by = 10
 
 
 #Views for question
@@ -96,7 +99,8 @@ class QuestionDetailView(generic.DetailView):
 
 class QuestionListView(generic.ListView):
     model = Question
-    
+    paginate_by = 10
+
 #Views for vignette
 class VignetteCreate(CreateView):
     model = Vignette
@@ -116,6 +120,7 @@ class VignetteDetailView(generic.DetailView):
 
 class VignetteListView(generic.ListView):
     model = Vignette
+    paginate_by = 10
 
 #Views for data_source
 class DataSourceCreate(CreateView):
@@ -141,7 +146,8 @@ class DataSourceDetailView(generic.DetailView):
 
 class DataSourceListView(generic.ListView):
     model = DataSource
-    
+    paginate_by = 10
+
 #Views for response
 class ResponseCreate(CreateView):
     model = Response
@@ -164,6 +170,8 @@ class ResponseDetailView(generic.DetailView):
 
 class ResponseListView(generic.ListView):
     model = Response
+    paginate_by = 10
+
 
 
 

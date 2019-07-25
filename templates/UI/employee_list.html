@@ -2,18 +2,22 @@
 
 {% block content %}
     {% if employee_list %}
-        <table class="table">
-            <tr>
-                <th>First name</th>
-                <th>Last Name</th>
-            </tr>
-            {% for employee in employee_list %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <td><a href="{{ employee.get_absolute_url }}">{{ employee.first_name }}</a></td>
-                    <td>{{ employee.last_name }}</td>
+                    <th>First name</th>
+                    <th>Last Name</th>
                 </tr>
-            {% endfor %}
-        </table>
+                </thead>
+                {% for employee in employee_list %}
+                    <tr>
+                        <td><a href="{{ employee.get_absolute_url }}">{{ employee.first_name }}</a></td>
+                        <td>{{ employee.last_name }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     {% else %}
         <p>There are no employees in the library.</p>
     {% endif %}

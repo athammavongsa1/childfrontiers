@@ -19,29 +19,31 @@
     <br>
     <h3>Associated Responses</h3>
     <ul>
-        <table class="table">
-            <tr>
-                <th>Question</th>
-                <th>Response</th>
-                <th>Participant</th>
-                <th>Data Source</th>
-            </tr>
-            {% for response in view.response %}
-                {% if response.data_source_id == datasource.data_source_id %}
-                    <tr>
-                        <td>{{ response.question.question_text }}</td>
-                        <td>
-                            <a href="{{ response.get_absolute_url }}">
-                                {{ response.qualitative_response|default_if_none:"" }}
-                                {{ response.quantitative_response|default_if_none:"" }}
-                                {{ response.boolean_response|default_if_none:"" }}</a>
-                        </td>
-                    <td>{{ response.participant.participant_type }}</td>
-                    <td>{{ response.data_source.name }}</td>
-                    </tr>
-                {% endif %}
-            {% endfor %}
-        </table>
+        <div class="table-responsive">
+            <table class="table table-sm table-hover">
+                <tr>
+                    <th>Question</th>
+                    <th>Response</th>
+                    <th>Participant</th>
+                    <th>Data Source</th>
+                </tr>
+                {% for response in view.response %}
+                    {% if response.data_source_id == datasource.data_source_id %}
+                        <tr>
+                            <td>{{ response.question.question_text }}</td>
+                            <td>
+                                <a href="{{ response.get_absolute_url }}">
+                                    {{ response.qualitative_response|default_if_none:"" }}
+                                    {{ response.quantitative_response|default_if_none:"" }}
+                                    {{ response.boolean_response|default_if_none:"" }}</a>
+                            </td>
+                            <td>{{ response.participant.participant_type }}</td>
+                            <td>{{ response.data_source.name }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
     </ul>
     <p><a href="{% url 'response_create' %}" class="btn btn-secondary">Add Response</a></p>
 {% endblock %}

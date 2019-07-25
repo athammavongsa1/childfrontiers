@@ -2,11 +2,14 @@
 
 {% block content %}
     {% if vignette_list %}
-        <table class="table">
+        <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th>Vignette</th>
                 <th>Vignette type</th>
             </tr>
+            </thead>
             {% for vignette in vignette_list %}
                 <tr>
                     <td><a href="{{ vignette.get_absolute_url }}">{{ vignette.vignette_description }}</a></td>
@@ -15,6 +18,7 @@
                 </tr>
             {% endfor %}
         </table>
+        </div>
     {% else %}
         <p>There are no vignettes in the library.</p>
     {% endif %}

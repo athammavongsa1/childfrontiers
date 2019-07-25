@@ -2,16 +2,20 @@
 
 {% block content %}
     {% if project_list %}
-        <table class="table">
-            <tr>
-                <th>Project</th>
-            </tr>
-            {% for project in project_list %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <td><a href="{{ project.get_absolute_url }}">{{ project.name }}</a></td>
+                    <th>Project</th>
                 </tr>
-            {% endfor %}
-        </table>
+                </thead>
+                {% for project in project_list %}
+                    <tr>
+                        <td><a href="{{ project.get_absolute_url }}">{{ project.name }}</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     {% else %}
         <p>There are no projects in the library.</p>
     {% endif %}
