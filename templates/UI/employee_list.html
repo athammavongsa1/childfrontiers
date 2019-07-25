@@ -10,6 +10,7 @@
                     <th>Last Name</th>
                 </tr>
                 </thead>
+                <tbody>
                 {% for employee in employee_list %}
                     <tr>
                         <td><a href="{{ employee.get_absolute_url }}">{{ employee.first_name }}</a></td>
@@ -17,6 +18,7 @@
                     </tr>
                 {% endfor %}
             </table>
+            </tbody>
         </div>
     {% else %}
         <p>There are no employees in the library.</p>

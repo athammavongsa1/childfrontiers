@@ -10,12 +10,14 @@
                     <th>Question rank</th>
                 </tr>
                 </thead>
+                <tbody>
                 {% for question in question_list %}
                     <tr>
                         <td><a href="{{ question.get_absolute_url }}">{{ question.question_text }}</a></td>
                         <td>{{ question.question_rank }}</td>
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
     {% else %}

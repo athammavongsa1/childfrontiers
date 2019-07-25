@@ -9,11 +9,13 @@
                     <th>Project</th>
                 </tr>
                 </thead>
+                <tbody>
                 {% for project in project_list %}
                     <tr>
                         <td><a href="{{ project.get_absolute_url }}">{{ project.name }}</a></td>
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
     {% else %}

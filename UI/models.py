@@ -145,7 +145,10 @@ class Question(models.Model):
         return reverse('question_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
-        return '%s' % self.question_text
+        if (self.question_rank):
+            return '%s rank: %s' % (self.question_text, self.question_rank)
+        else:
+            return  '%s' % (self.question_text)
 
     class Meta:
         managed = False

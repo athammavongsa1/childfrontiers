@@ -10,12 +10,14 @@
                     <th>Type</th>
                 </tr>
                 </thead>
+                <tbody>
                 {% for client in client_list %}
                     <tr>
                         <td><a href="{{ client.get_absolute_url }}">{{ client.name }}</a></td>
                         <td>{{ client.type }}</td>
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
     {% else %}

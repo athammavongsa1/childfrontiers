@@ -15,31 +15,35 @@
     <br>
     <h3>Associated Data Sources</h3>
     <ul>
-    <div class="table-responsive">
-        <table class="table table-sm table-hover">
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Acquisition date</th>
-                <th>Province</th>
-                <th>District</th>
-                <th>Community</th>
-            </tr>
-            {% for data_source in view.data_source %}
-                {% if data_source.project.name == project.name %}
-                    <tr>
-                        <td><a href="{{ data_source.get_absolute_url }}">{{ data_source.name }}</a></td>
-                        <td>{{ data_source.data_source_type }}</td>
-                        <td>{{ data_source.acquisition_date }}</td>
-                        <td>{{ data_source.province|default_if_none:"Not entered" }}</td>
-                        <td>{{ data_source.district|default_if_none:"Not entered" }}</td>
-                        <td>{{ data_source.community|default_if_none:"Not entered" }}</td>
+        <div class="table-responsive">
+            <table class="table table-sm table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Acquisition date</th>
+                    <th>Province</th>
+                    <th>District</th>
+                    <th>Community</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data_source in view.data_source %}
+                    {% if data_source.project.name == project.name %}
+                        <tr>
+                            <td><a href="{{ data_source.get_absolute_url }}">{{ data_source.name }}</a></td>
+                            <td>{{ data_source.data_source_type }}</td>
+                            <td>{{ data_source.acquisition_date }}</td>
+                            <td>{{ data_source.province|default_if_none:"Not entered" }}</td>
+                            <td>{{ data_source.district|default_if_none:"Not entered" }}</td>
+                            <td>{{ data_source.community|default_if_none:"Not entered" }}</td>
 
-                    </tr>
-                {% endif %}
-            {% endfor %}
-        </table>
-    </div>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </ul>
 
 

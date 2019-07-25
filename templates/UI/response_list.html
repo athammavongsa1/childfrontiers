@@ -12,6 +12,7 @@
                     <th>Data Source</th>
                 </tr>
                 </thead>
+                <tbody>
                 {% for response in response_list %}
                     <tr>
                         <td>{{ response.question.question_text }}</td>
@@ -21,6 +22,7 @@
                         <td>{{ response.data_source.name }}</td>
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
     {% else %}

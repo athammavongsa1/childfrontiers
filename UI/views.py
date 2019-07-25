@@ -151,7 +151,8 @@ class DataSourceListView(generic.ListView):
 #Views for response
 class ResponseCreate(CreateView):
     model = Response
-    fields = '__all__'
+    fields = ['qualitative_response', 'quantitative_response', 'boolean_response', 'participant', 'question',
+                  'data_source']
 
     def get_success_url(self):
         return reverse('data_source_detail', kwargs={'pk': self.object.data_source.data_source_id})

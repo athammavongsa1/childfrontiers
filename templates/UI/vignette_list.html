@@ -3,21 +3,23 @@
 {% block content %}
     {% if vignette_list %}
         <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Vignette</th>
-                <th>Vignette type</th>
-            </tr>
-            </thead>
-            {% for vignette in vignette_list %}
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <td><a href="{{ vignette.get_absolute_url }}">{{ vignette.vignette_description }}</a></td>
-                    <td>{{ vignette.vignette_type }}</td>
-
+                    <th>Vignette</th>
+                    <th>Vignette type</th>
                 </tr>
-            {% endfor %}
-        </table>
+                </thead>
+                </tbody>
+                {% for vignette in vignette_list %}
+                    <tr>
+                        <td><a href="{{ vignette.get_absolute_url }}">{{ vignette.vignette_description }}</a></td>
+                        <td>{{ vignette.vignette_type }}</td>
+
+                    </tr>
+                {% endfor %}
+            </table>
+            </table>
         </div>
     {% else %}
         <p>There are no vignettes in the library.</p>
