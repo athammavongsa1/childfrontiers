@@ -18,6 +18,9 @@ Layout adapted from https://bit.ly/2LA3Y2F under MIT license
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"
           rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
     <!-- Custom styles for this template -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" rel="stylesheet">
@@ -59,8 +62,6 @@ Layout adapted from https://bit.ly/2LA3Y2F under MIT license
         <div class="list-group list-group-flush">
             <a href="{% url 'index' %}" class="list-group-item list-group-item-action bg-light">Home</a>
             <a href="{% url 'project_list' %}" class="list-group-item list-group-item-action bg-light">Projects</a>
-            <a href="{% url 'data_source_list' %}" class="list-group-item list-group-item-action bg-light">Data
-                sources</a>
             <a href="{% url 'client_list' %}" class="list-group-item list-group-item-action bg-light">Clients</a>
             <a href="{% url 'employee_list' %}" class="list-group-item list-group-item-action bg-light">Employees</a>
             <a href="{% url 'question_list' %}" class="list-group-item list-group-item-action bg-light">Questions</a>
@@ -97,6 +98,8 @@ Layout adapted from https://bit.ly/2LA3Y2F under MIT license
     <!-- /#page-content-wrapper -->
 
 </div>
+
+</body>
 <!-- /#wrapper -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -107,7 +110,13 @@ Layout adapted from https://bit.ly/2LA3Y2F under MIT license
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-</body>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        $('#table').DataTable();
+      });
+    </script>
 
 </html>
 
