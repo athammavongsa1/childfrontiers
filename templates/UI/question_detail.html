@@ -6,6 +6,7 @@
     <ul>
         <p><strong>Question test:</strong> {{ question.question_text }}</p>
         <p><strong>Question rank:</strong> {{ question.question_rank }}</p>
+        <p><strong>Associated vignette:</strong> <br/>{% for vignette in question.vignettes.all %}{{ vignette }}<br/>{% endfor %}</p>
     </ul>
     <p><a href="{{ question.question_id }}/update/" class="btn btn-secondary">Modify question</a>
         <a href="{{ question.question_id }}/delete/" class="btn btn-secondary">Delete question</a></p>

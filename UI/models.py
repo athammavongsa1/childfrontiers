@@ -46,6 +46,7 @@ class Project(models.Model):
     completion_date = models.DateField(blank=False, null=False)
     country = models.CharField(max_length=50, choices=project_countries, blank=False, null=False)
     client = models.ForeignKey(Client, models.DO_NOTHING)
+    team = models.ManyToManyField('Employee', through='ProjectDataSourceEmployee')
 
     def get_absolute_url(self):
         return reverse('project_detail', kwargs={'pk': self.pk})
@@ -69,6 +70,7 @@ class DataSource(models.Model):
     province = models.CharField(max_length=50, blank=True, null=True)
     district = models.CharField(max_length=50, blank=True, null=True)
     community = models.CharField(max_length=50, blank=True, null=True)
+    team = models.ManyToManyField('Employee', through='ProjectDataSourceEmployee')
 
     def get_absolute_url(self):
         return reverse('data_source_detail', kwargs={'pk': self.pk})
@@ -104,16 +106,6 @@ class Employee(models.Model):
         managed = False
         db_table = 'employee'
 
-
-class EmployeeProject(models.Model):
-    employee = models.ForeignKey(Employee, models.DO_NOTHING)
-    project = models.ForeignKey('Project', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'employee_project'
-
-
 class Participant(models.Model):
     participant_id = models.AutoField(primary_key=True)
     participant_type = models.CharField(max_length=30, blank=False, null=False)
@@ -140,7 +132,7 @@ class Question(models.Model):
     question_id = models.AutoField(primary_key=True)
     question_text = models.CharField(max_length=255)
     question_rank = models.IntegerField(blank=True, null=True)
-    vignette = models.ManyToManyField('Vignette', through='QuestionVignette')
+    vignettes = models.ManyToManyField('Vignette', through='QuestionVignette')
 
     def get_absolute_url(self):
         return reverse('question_detail', kwargs={'pk': self.pk})
