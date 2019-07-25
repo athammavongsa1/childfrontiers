@@ -140,6 +140,7 @@ class Question(models.Model):
     question_id = models.AutoField(primary_key=True)
     question_text = models.CharField(max_length=255)
     question_rank = models.IntegerField(blank=True, null=True)
+    vignette = models.ManyToManyField('Vignette', through='QuestionVignette')
 
     def get_absolute_url(self):
         return reverse('question_detail', kwargs={'pk': self.pk})
