@@ -30,9 +30,12 @@ class ClientDelete(DeleteView):
 class ClientDetailView(generic.DetailView):
     model = Client
 
+    def project(self):
+        return Project.objects.all()
+
 class ClientListView(generic.ListView):
     model = Client
-    paginate_by = 10
+    paginate_by = 12
 
 #Views for employee
 class EmployeeCreate(CreateView):
@@ -53,7 +56,7 @@ class EmployeeDetailView(generic.DetailView):
 
 class EmployeeListView(generic.ListView):
     model = Employee
-    paginate_by = 10
+    paginate_by = 12
 
 #Views for project
 class ProjectCreate(CreateView):
@@ -77,7 +80,7 @@ class ProjectDetailView(generic.DetailView):
 
 class ProjectListView(generic.ListView):
     model = Project
-    paginate_by = 10
+    paginate_by = 12
 
 
 #Views for question
@@ -99,7 +102,7 @@ class QuestionDetailView(generic.DetailView):
 
 class QuestionListView(generic.ListView):
     model = Question
-    paginate_by = 10
+    paginate_by = 12
 
 #Views for vignette
 class VignetteCreate(CreateView):
@@ -120,7 +123,7 @@ class VignetteDetailView(generic.DetailView):
 
 class VignetteListView(generic.ListView):
     model = Vignette
-    paginate_by = 10
+    paginate_by = 12
 
 #Views for data_source
 class DataSourceCreate(CreateView):
@@ -146,7 +149,7 @@ class DataSourceDetailView(generic.DetailView):
 
 class DataSourceListView(generic.ListView):
     model = DataSource
-    paginate_by = 10
+    paginate_by = 12
 
 #Views for response
 class ResponseCreate(CreateView):
@@ -171,7 +174,7 @@ class ResponseDetailView(generic.DetailView):
 
 class ResponseListView(generic.ListView):
     model = Response
-    paginate_by = 10
+    paginate_by = 12
 
 
 

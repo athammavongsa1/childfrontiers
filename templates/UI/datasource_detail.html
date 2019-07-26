@@ -29,7 +29,6 @@
                         <th>Question</th>
                         <th>Question rank</th>
                         <th>Participant</th>
-                        <th>Data Source</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -45,7 +44,6 @@
                                 <td>{{ response.question.question_text }}</td>
                                 <td>{{ response.question.question_rank }}</td>
                                 <td>{{ response.participant.participant_type }}</td>
-                                <td>{{ response.data_source.name }}</td>
                             </tr>
                         {% endif %}
                     {% endfor %}

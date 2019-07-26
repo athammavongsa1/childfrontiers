@@ -9,6 +9,31 @@
     </ul>
         <p><a href="{{ client.client_id }}/update/" class="btn btn-secondary">Modify client</a>
         <a href="{{ client.client_id }}/delete/" class="btn btn-secondary">Delete client</a></p>
+        <br>
+    <h3>Associated Projects</h3>
+    <ul>
+        <div class="table-responsive">
+            <table id="table" class="table table-sm table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for project in view.project %}
+                    {% if project.client.name == client.name %}
+                        <tr>
+                            <td><a href="{{ project.get_absolute_url }}">{{ project.name }}</a></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </ul>
+
+
+    <p><a href="{% url 'data_source_create' %}" class="btn btn-secondary">Add data source</a></p>
 
 
 {% endblock %}

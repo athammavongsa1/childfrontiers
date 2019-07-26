@@ -11,7 +11,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>There are no data sources in the library.</p>
+        <p>There are no data sources in the database.</p>
     {% endif %}
     <p><a href="{% url 'data_source_create' %}" class="btn btn-secondary">Add Data Source</a></p>
 {% endblock %}
