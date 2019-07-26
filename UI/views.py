@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Response
 from django.shortcuts import redirect
 
+
 # Homepage view
 def index(request):
     """View function for home page of site."""
@@ -13,19 +14,23 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html')
 
-#Views for client
+
+# Views for client
 class ClientCreate(CreateView):
     model = Client
     fields = '__all__'
     success_url = reverse_lazy('client_list')
 
+
 class ClientUpdate(UpdateView):
     model = Client
-    fields = ['name', 'type']
+    fields = '__all__'
+
 
 class ClientDelete(DeleteView):
     model = Client
     success_url = reverse_lazy('client_list')
+
 
 class ClientDetailView(generic.DetailView):
     model = Client
@@ -33,44 +38,54 @@ class ClientDetailView(generic.DetailView):
     def project(self):
         return Project.objects.all()
 
+
 class ClientListView(generic.ListView):
     model = Client
     paginate_by = 12
 
-#Views for employee
+
+# Views for employee
 class EmployeeCreate(CreateView):
     model = Employee
     fields = '__all__'
     success_url = reverse_lazy('employee_list')
 
+
 class EmployeeUpdate(UpdateView):
     model = Employee
-    fields = ['first_name', 'last_name', 'job_title']
+    fields = '__all__'
+
 
 class EmployeeDelete(DeleteView):
     model = Employee
     success_url = reverse_lazy('employee_list')
 
+
 class EmployeeDetailView(generic.DetailView):
     model = Employee
+
 
 class EmployeeListView(generic.ListView):
     model = Employee
     paginate_by = 12
 
-#Views for project
+
+# Views for project
 class ProjectCreate(CreateView):
     model = Project
     fields = '__all__'
     success_url = reverse_lazy('project_list')
 
+
 class ProjectUpdate(UpdateView):
     model = Project
-    fields = ['name', 'project_type', 'completion_date', 'country', 'client']
+    fields = '__all__'
+
 
 class ProjectDelete(DeleteView):
     model = Project
     success_url = reverse_lazy('project_list')
+
 
 class ProjectDetailView(generic.DetailView):
     model = Project
@@ -78,54 +93,65 @@ class ProjectDetailView(generic.DetailView):
     def data_source(self):
         return DataSource.objects.all()
 
+
 class ProjectListView(generic.ListView):
     model = Project
     paginate_by = 12
 
 
-#Views for question
+# Views for question
 class QuestionCreate(CreateView):
     model = Question
     fields = '__all__'
     success_url = reverse_lazy('question_list')
 
+
 class QuestionUpdate(UpdateView):
     model = Question
-    fields = ['question_id', 'question_text', 'question_rank']
+    fields = '__all__'
+
 
 class QuestionDelete(DeleteView):
     model = Question
     success_url = reverse_lazy('question_list')
 
+
 class QuestionDetailView(generic.DetailView):
     model = Question
+
 
 class QuestionListView(generic.ListView):
     model = Question
     paginate_by = 12
 
-#Views for vignette
+
+# Views for vignette
 class VignetteCreate(CreateView):
     model = Vignette
     fields = '__all__'
     success_url = reverse_lazy('vignette_list')
 
+
 class VignetteUpdate(UpdateView):
     model = Vignette
-    fields = ['vignette_type', 'vignette_description']
+    fields = '__all__'
+
 
 class VignetteDelete(DeleteView):
     model = Vignette
     success_url = reverse_lazy('vignette_list')
 
+
 class VignetteDetailView(generic.DetailView):
     model = Vignette
+
 
 class VignetteListView(generic.ListView):
     model = Vignette
     paginate_by = 12
 
-#Views for data_source
+
+# Views for data_source
 class DataSourceCreate(CreateView):
     model = DataSource
     fields = '__all__'
@@ -133,13 +159,16 @@ class DataSourceCreate(CreateView):
     def get_success_url(self):
         return reverse('project_detail', kwargs={'pk': self.object.project.project_id})
 
+
 class DataSourceUpdate(UpdateView):
     model = DataSource
-    fields = ['data_source_type', 'acquisition_date', 'project', 'province', 'district', 'community']
+    fields = '__all__'
+
 
 class DataSourceDelete(DeleteView):
     model = DataSource
     success_url = reverse_lazy('data_source_list')
+
 
 class DataSourceDetailView(generic.DetailView):
     model = DataSource
@@ -147,38 +176,38 @@ class DataSourceDetailView(generic.DetailView):
     def response(self):
         return Response.objects.all()
 
+
 class DataSourceListView(generic.ListView):
     model = DataSource
     paginate_by = 12
 
-#Views for response
+
+# Views for response
 class ResponseCreate(CreateView):
     model = Response
-    fields = ['qualitative_response', 'quantitative_response', 'boolean_response', 'participant', 'question',
-                  'data_source']
+    fields = '__all__'
 
     def get_success_url(self):
         return reverse('data_source_detail', kwargs={'pk': self.object.data_source.data_source_id})
 
+
 class ResponseUpdate(UpdateView):
     model = Response
-    fields = ['qualitative_response', 'quantitative_response', 'boolean_response', 'participant', 'question',
-                  'data_source']
+    fields = '__all__'
+
 
 class ResponseDelete(DeleteView):
     model = Response
     success_url = reverse_lazy('response_list')
 
+
 class ResponseDetailView(generic.DetailView):
     model = Response
+
 
 class ResponseListView(generic.ListView):
     model = Response
     paginate_by = 12
-
-
-
-
 
 # def create_client(request):
 #     client_instance = Client()
@@ -209,7 +238,3 @@ class ResponseListView(generic.ListView):
 #     }
 #
 #     return render(request, 'client_form.html', context)
-
-
-
-
