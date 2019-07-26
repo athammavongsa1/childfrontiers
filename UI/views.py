@@ -2,9 +2,10 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request, HttpRequest
 from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Response
 from django.shortcuts import redirect
+from django.utils.http import is_safe_url
 
 
 # Homepage view
@@ -21,10 +22,20 @@ class ClientCreate(CreateView):
     fields = '__all__'
     success_url = reverse_lazy('client_list')
 
+    def get_context_data(self, **kwargs):
+        context = super(ClientCreate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 1
+        return context
+
 
 class ClientUpdate(UpdateView):
     model = Client
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super(ClientUpdate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 0
+        return context
 
 
 class ClientDelete(DeleteView):
@@ -50,10 +61,20 @@ class EmployeeCreate(CreateView):
     fields = '__all__'
     success_url = reverse_lazy('employee_list')
 
+    def get_context_data(self, **kwargs):
+        context = super(EmployeeCreate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 1
+        return context
+
 
 class EmployeeUpdate(UpdateView):
     model = Employee
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super(EmployeeUpdate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 0
+        return context
 
 
 class EmployeeDelete(DeleteView):
@@ -76,10 +97,20 @@ class ProjectCreate(CreateView):
     fields = '__all__'
     success_url = reverse_lazy('project_list')
 
+    def get_context_data(self, **kwargs):
+        context = super(ProjectCreate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 1
+        return context
+
 
 class ProjectUpdate(UpdateView):
     model = Project
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectUpdate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 0
+        return context
 
 
 class ProjectDelete(DeleteView):
@@ -105,10 +136,20 @@ class QuestionCreate(CreateView):
     fields = '__all__'
     success_url = reverse_lazy('question_list')
 
+    def get_context_data(self, **kwargs):
+        context = super(QuestionCreate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 1
+        return context
+
 
 class QuestionUpdate(UpdateView):
     model = Question
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionUpdate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 0
+        return context
 
 
 class QuestionDelete(DeleteView):
@@ -131,10 +172,20 @@ class VignetteCreate(CreateView):
     fields = '__all__'
     success_url = reverse_lazy('vignette_list')
 
+    def get_context_data(self, **kwargs):
+        context = super(VignetteCreate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 1
+        return context
+
 
 class VignetteUpdate(UpdateView):
     model = Vignette
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super(VignetteUpdate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 0
+        return context
 
 
 class VignetteDelete(DeleteView):
@@ -159,10 +210,19 @@ class DataSourceCreate(CreateView):
     def get_success_url(self):
         return reverse('project_detail', kwargs={'pk': self.object.project.project_id})
 
+    def get_context_data(self, **kwargs):
+        context = super(DataSourceCreate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 1
+        return context
 
 class DataSourceUpdate(UpdateView):
     model = DataSource
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super(DataSourceUpdate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 0
+        return context
 
 
 class DataSourceDelete(DeleteView):
@@ -190,10 +250,20 @@ class ResponseCreate(CreateView):
     def get_success_url(self):
         return reverse('data_source_detail', kwargs={'pk': self.object.data_source.data_source_id})
 
+    def get_context_data(self, **kwargs):
+        context = super(ResponseCreate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 1
+        return context
+
 
 class ResponseUpdate(UpdateView):
     model = Response
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super(ResponseUpdate, self).get_context_data(**kwargs)
+        context['get_redirect'] = 0
+        return context
 
 
 class ResponseDelete(DeleteView):
