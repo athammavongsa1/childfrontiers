@@ -1,7 +1,7 @@
 from django.contrib import admin
 from UI.models import Client, DataSource, Employee, ProjectDataSourceEmployee, Participant, Project, Question, QuestionVignette, Response, Vignette
 
-# Register your models here.
+# Register model representations of database tables.
 admin.site.register(Client)
 admin.site.register(DataSource)
 admin.site.register(Employee)

@@ -1,16 +1,10 @@
-# Create your models here.
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
+# This is an auto-generated Django model module that creates modules for database entitites.
 
 from django.db import models
 from django.urls import reverse
 
 
+# A class to create client objects.
 class Client(models.Model):
     client_types = (
         ('government', 'government'),
@@ -24,9 +18,11 @@ class Client(models.Model):
     name = models.CharField(max_length=50, blank=False, null=False)
     type = models.CharField(max_length=50, choices=client_types, blank=False, null=False)
 
+    # A function to send url requests to client detail page.
     def get_absolute_url(self):
         return reverse('client_detail', kwargs={'pk': self.pk})
 
+    # A function to return a string representation of a client in the form of the client name.
     def __str__(self):
         return '%s' % self.name
 
@@ -36,6 +32,7 @@ class Client(models.Model):
         ordering = ('name',)
 
 
+# A class to create project objects.
 class Project(models.Model):
     project_types = (('research', 'research'), ('evaluation', 'evaluation'), ('system mapping', 'system mapping'),
                      ('technical assistance', 'technical assistance'))
@@ -116,9 +113,11 @@ class Project(models.Model):
     client = models.ForeignKey(Client, models.DO_NOTHING)
     team = models.ManyToManyField('Employee', through='ProjectDataSourceEmployee')
 
+    # A function to send url requests to project detail page.
     def get_absolute_url(self):
         return reverse('project_detail', kwargs={'pk': self.pk})
 
+    # A function to return a string representation of a project in the form of the project name.
     def __str__(self):
         return '%s' % self.name
 
@@ -128,6 +127,7 @@ class Project(models.Model):
         ordering = ('name',)
 
 
+# A class to create data source objects.
 class DataSource(models.Model):
     data_source_types = (('focus group', 'focus group'), ('survey', 'survey'))
 
@@ -141,9 +141,11 @@ class DataSource(models.Model):
     community = models.CharField(max_length=50, blank=True, null=True)
     team = models.ManyToManyField('Employee', through='ProjectDataSourceEmployee')
 
+    # A function to send url requests to data source detail page.
     def get_absolute_url(self):
         return reverse('data_source_detail', kwargs={'pk': self.pk})
 
+    # A function to return a string representation of a data source in the form of the data source name.
     def __str__(self):
         return '%s' % self.name
 
@@ -152,6 +154,7 @@ class DataSource(models.Model):
         db_table = 'data_source'
 
 
+# A class to create employee objects.
 class Employee(models.Model):
     job_title_types = (('Director', 'Director'),
                        ('Senior Associate', 'Senior Associate'),
@@ -165,21 +168,26 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=50, blank=False, null=False)
     job_title = models.CharField(max_length=50, choices=job_title_types, blank=False, null=False)
 
-    def __str__(self):
-        return '%s, %s' % (self.last_name, self.first_name)
-
+    # A function to send url requests to employee detail page.
     def get_absolute_url(self):
         return reverse('employee_detail', kwargs={'pk': self.pk})
+
+    # A function to return a string representation of an employee in the form of the employee name.
+    def __str__(self):
+        return '%s, %s' % (self.last_name, self.first_name)
 
     class Meta:
         managed = False
         db_table = 'employee'
         ordering = ('last_name',)
 
+
+# A class to create participant objects.
 class Participant(models.Model):
     participant_id = models.AutoField(primary_key=True)
     participant_type = models.CharField(max_length=30, blank=False, null=False)
 
+    # A function to return a string representation of a participant in the form of the participant type.
     def __str__(self):
         return '%s' % self.participant_type
 
@@ -188,6 +196,7 @@ class Participant(models.Model):
         db_table = 'participant'
 
 
+# A class to create ProjectDataSourceEmployee objects.
 class ProjectDataSourceEmployee(models.Model):
     project = models.ForeignKey(Project, models.DO_NOTHING)
     data_source = models.ForeignKey(DataSource, models.DO_NOTHING)
@@ -198,26 +207,30 @@ class ProjectDataSourceEmployee(models.Model):
         db_table = 'project_data_source_employee'
 
 
+# A class to create question objects.
 class Question(models.Model):
     question_id = models.AutoField(primary_key=True)
     question_text = models.CharField(max_length=255)
     question_rank = models.IntegerField(blank=True, null=True)
     vignettes = models.ManyToManyField('Vignette', through='QuestionVignette')
 
+    # A function to send url requests to question detail page.
     def get_absolute_url(self):
         return reverse('question_detail', kwargs={'pk': self.pk})
 
+    # A function to return a string representation of a question in the form of the question text and rank if entered.
     def __str__(self):
         if (self.question_rank):
             return '%s rank: %s' % (self.question_text, self.question_rank)
         else:
-            return  '%s' % (self.question_text)
+            return '%s' % (self.question_text)
 
     class Meta:
         managed = False
         db_table = 'question'
 
 
+# A class to create QuestionVignette objects.
 class QuestionVignette(models.Model):
     question = models.ForeignKey(Question, models.DO_NOTHING)
     vignette = models.ForeignKey('Vignette', models.DO_NOTHING)
@@ -227,6 +240,7 @@ class QuestionVignette(models.Model):
         db_table = 'question_vignette'
 
 
+# A class to create response objects.
 class Response(models.Model):
     response_id = models.AutoField(primary_key=True)
     qualitative_response = models.CharField(max_length=255, blank=True, null=True)
@@ -236,9 +250,11 @@ class Response(models.Model):
     question = models.ForeignKey(Question, models.DO_NOTHING)
     data_source = models.ForeignKey(DataSource, models.DO_NOTHING)
 
+    # A function to send url requests to response detail page.
     def get_absolute_url(self):
         return reverse('response_detail', kwargs={'pk': self.pk})
 
+    # A function to return a string representation of a response in the form of the response content.
     def __str__(self):
         return '%s %d %d' % (self.qualitative_response, self.quantitative_response, self.boolean_response)
 
@@ -247,6 +263,7 @@ class Response(models.Model):
         db_table = 'response'
 
 
+# A class to create vignette objects.
 class Vignette(models.Model):
     vignette_types = (('sexual exploitation', 'sexual exploitation',), ('child marriage', 'child marriage'),
                       ('domestic violence', 'domestic violence'), ('neglect', 'neglect'))
@@ -255,9 +272,11 @@ class Vignette(models.Model):
     vignette_type = models.CharField(max_length=50, choices=vignette_types, blank=False, null=False)
     vignette_description = models.CharField(max_length=200, blank=True, null=True)
 
+    # A function to send url requests to vignette detail page.
     def get_absolute_url(self):
         return reverse('vignette_detail', kwargs={'pk': self.pk})
 
+    # A function to return a string representation of a vignette in the form of the vignette description.
     def __str__(self):
         return '%s' % self.vignette_description
 

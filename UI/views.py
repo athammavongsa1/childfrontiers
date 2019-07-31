@@ -2,13 +2,10 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, request, HttpRequest
 from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Response
-from django.shortcuts import redirect
-from django.utils.http import is_safe_url
 
 
-# Homepage view
+# View for welcome page.
 def index(request):
     """View function for home page of site."""
 
@@ -16,7 +13,7 @@ def index(request):
     return render(request, 'index.html')
 
 
-# Views for client
+# View for create client page.
 class ClientCreate(CreateView):
     model = Client
     fields = '__all__'
@@ -28,6 +25,7 @@ class ClientCreate(CreateView):
         return context
 
 
+# View for update client page.
 class ClientUpdate(UpdateView):
     model = Client
     fields = '__all__'
@@ -38,11 +36,13 @@ class ClientUpdate(UpdateView):
         return context
 
 
+# View for delete client page.
 class ClientDelete(DeleteView):
     model = Client
     success_url = reverse_lazy('client_list')
 
 
+# View for client detail page.
 class ClientDetailView(generic.DetailView):
     model = Client
 
@@ -50,12 +50,13 @@ class ClientDetailView(generic.DetailView):
         return Project.objects.all()
 
 
+# View for list clients page.
 class ClientListView(generic.ListView):
     model = Client
     paginate_by = 12
 
 
-# Views for employee
+# View for create employee page.
 class EmployeeCreate(CreateView):
     model = Employee
     fields = '__all__'
@@ -67,6 +68,7 @@ class EmployeeCreate(CreateView):
         return context
 
 
+# View for update employee page.
 class EmployeeUpdate(UpdateView):
     model = Employee
     fields = '__all__'
@@ -77,21 +79,24 @@ class EmployeeUpdate(UpdateView):
         return context
 
 
+# View for delete employee page.
 class EmployeeDelete(DeleteView):
     model = Employee
     success_url = reverse_lazy('employee_list')
 
 
+# View for employee detail page.
 class EmployeeDetailView(generic.DetailView):
     model = Employee
 
 
+# View for list employees page.
 class EmployeeListView(generic.ListView):
     model = Employee
     paginate_by = 12
 
 
-# Views for project
+# View for create project page.
 class ProjectCreate(CreateView):
     model = Project
     fields = '__all__'
@@ -103,6 +108,7 @@ class ProjectCreate(CreateView):
         return context
 
 
+# View for update project page.
 class ProjectUpdate(UpdateView):
     model = Project
     fields = '__all__'
@@ -113,11 +119,13 @@ class ProjectUpdate(UpdateView):
         return context
 
 
+# View for delete project page.
 class ProjectDelete(DeleteView):
     model = Project
     success_url = reverse_lazy('project_list')
 
 
+# View for project detail page.
 class ProjectDetailView(generic.DetailView):
     model = Project
 
@@ -125,12 +133,13 @@ class ProjectDetailView(generic.DetailView):
         return DataSource.objects.all()
 
 
+# View for list projects page.
 class ProjectListView(generic.ListView):
     model = Project
     paginate_by = 12
 
 
-# Views for question
+# View for create question page.
 class QuestionCreate(CreateView):
     model = Question
     fields = '__all__'
@@ -142,6 +151,7 @@ class QuestionCreate(CreateView):
         return context
 
 
+# View for update question page.
 class QuestionUpdate(UpdateView):
     model = Question
     fields = '__all__'
@@ -152,21 +162,24 @@ class QuestionUpdate(UpdateView):
         return context
 
 
+# View for delete question page.
 class QuestionDelete(DeleteView):
     model = Question
     success_url = reverse_lazy('question_list')
 
 
+# View for question detail page.
 class QuestionDetailView(generic.DetailView):
     model = Question
 
 
+# View for list questions page.
 class QuestionListView(generic.ListView):
     model = Question
     paginate_by = 12
 
 
-# Views for vignette
+# View for create vignette page.
 class VignetteCreate(CreateView):
     model = Vignette
     fields = '__all__'
@@ -178,6 +191,7 @@ class VignetteCreate(CreateView):
         return context
 
 
+# View for update vignette page.
 class VignetteUpdate(UpdateView):
     model = Vignette
     fields = '__all__'
@@ -188,21 +202,24 @@ class VignetteUpdate(UpdateView):
         return context
 
 
+# View for delete vignette page.
 class VignetteDelete(DeleteView):
     model = Vignette
     success_url = reverse_lazy('vignette_list')
 
 
+# View for vignette detail page.
 class VignetteDetailView(generic.DetailView):
     model = Vignette
 
 
+# View for list vignettes page.
 class VignetteListView(generic.ListView):
     model = Vignette
     paginate_by = 12
 
 
-# Views for data_source
+# View for create data source page.
 class DataSourceCreate(CreateView):
     model = DataSource
     fields = '__all__'
@@ -215,6 +232,8 @@ class DataSourceCreate(CreateView):
         context['get_redirect'] = 1
         return context
 
+
+# View for update data source page.
 class DataSourceUpdate(UpdateView):
     model = DataSource
     fields = '__all__'
@@ -225,11 +244,13 @@ class DataSourceUpdate(UpdateView):
         return context
 
 
+# View for delete data source page.
 class DataSourceDelete(DeleteView):
     model = DataSource
     success_url = reverse_lazy('data_source_list')
 
 
+# View for data source detail page.
 class DataSourceDetailView(generic.DetailView):
     model = DataSource
 
@@ -237,12 +258,13 @@ class DataSourceDetailView(generic.DetailView):
         return Response.objects.all()
 
 
+# View for list data sources page.
 class DataSourceListView(generic.ListView):
     model = DataSource
     paginate_by = 12
 
 
-# Views for response
+# View for create response page.
 class ResponseCreate(CreateView):
     model = Response
     fields = '__all__'
@@ -256,6 +278,7 @@ class ResponseCreate(CreateView):
         return context
 
 
+# View for update response page.
 class ResponseUpdate(UpdateView):
     model = Response
     fields = '__all__'
@@ -266,45 +289,18 @@ class ResponseUpdate(UpdateView):
         return context
 
 
+# View for delete response page.
 class ResponseDelete(DeleteView):
     model = Response
     success_url = reverse_lazy('response_list')
 
 
+# View for response detail page.
 class ResponseDetailView(generic.DetailView):
     model = Response
 
 
+# View for list responses page.
 class ResponseListView(generic.ListView):
     model = Response
     paginate_by = 12
-
-# def create_client(request):
-#     client_instance = Client()
-#
-#     # If this is a POST request then process the Form data
-#     if request.method == 'POST':
-#
-#         # Create a form instance and populate it with data from the request (binding):
-#         form = CreateClientModelForm(request.POST)
-#
-#         # Check if the form is valid:
-#         if form.is_valid():
-#             # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-#             client_instance.name = form.cleaned_data['name']
-#             client_instance.type = form.cleaned_data['type']
-#             client_instance.save()
-#
-#             # redirect to a new URL:
-#             return HttpResponseRedirect(reverse('index') )
-#
-#     # If this is a GET (or any other method) create the default form.
-#     else:
-#         form = CreateClientModelForm()
-#
-#     context = {
-#         'form': form,
-#         'client_instance': client_instance,
-#     }
-#
-#     return render(request, 'client_form.html', context)

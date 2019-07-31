@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'UI.apps.DataEntryConfig',
+    'UI.apps.UIConfig',
 ]
 
 MIDDLEWARE = [
@@ -76,14 +75,14 @@ WSGI_APPLICATION = 'childfrontiers.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'childfrontiers',
-        'USER': 'child_frontiers_django',
-        'PASSWORD': 'password',
-        'HOST': '',
-        'PORT': '',
-    }
+ 'default': {
+     'ENGINE': 'django.db.backends.mysql',
+     'NAME': 'childfrontiers',
+     'USER': 'child_frontiers_django',
+     'PASSWORD': 'password',
+     'HOST': '',
+     'PORT': '',
+ }
 }
 
 

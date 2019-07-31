@@ -3,7 +3,10 @@
 
 
 {% comment %}
+This is the base HTML template inherited by other app HTML pages. It contains code for the top title bar and navigation
+bar. It also links to Bootstrap, DataTables, and local CSS files for formatting and additional functionality.
 Layout adapted from https://bit.ly/2LA3Y2F under MIT license
+Child Frontiers logo used with written permission from Child Frontiers.
 {% endcomment %}
 
 <head>
@@ -30,6 +33,7 @@ Layout adapted from https://bit.ly/2LA3Y2F under MIT license
 
 <body>
 
+<!-- Top bar -->
 <nav class="navbar navbar-light bg-dark border-bottom" style="background-color: black !important">
     <img src={% static 'img/logo.png' %} class="rounded mx-auto d-block alt="logo">
 
@@ -56,7 +60,6 @@ Layout adapted from https://bit.ly/2LA3Y2F under MIT license
 
 <div class="d-flex" id="wrapper">
 
-
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="list-group list-group-flush">
@@ -68,10 +71,8 @@ Layout adapted from https://bit.ly/2LA3Y2F under MIT license
             <a href="{% url 'vignette_list' %}" class="list-group-item list-group-item-action bg-light">Vignettes</a>
         </div>
     </div>
-    <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
-
     <div id="page-content-wrapper">
         <div class="container-fluid">
             {% block content %}{% endblock %}
@@ -95,28 +96,33 @@ Layout adapted from https://bit.ly/2LA3Y2F under MIT license
             {% endblock %}
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
 
 </div>
 
 </body>
-<!-- /#wrapper -->
+
+<!-- Scripts required by Django -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
+
+<!-- Script for Boostrap -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+<!-- Script for DataTables -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
-    <script>
-      $(document).ready(function() {
+<!-- DataTables script to add interactive features to tables (sorting, pagination, and search) -->
+<script>
+    $(document).ready(function () {
         $('#table').DataTable();
-      });
-    </script>
+    });
+</script>
 
 </html>
 

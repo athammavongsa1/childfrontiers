@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
-
-class DataEntryConfig(AppConfig):
+# Configure UI application.
+class UIConfig(AppConfig):
     name = 'UI'
