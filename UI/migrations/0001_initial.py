@@ -74,7 +74,7 @@ class Migration(migrations.Migration):
                 ('project_type', models.CharField(max_length=20, blank=False, null=False)),
                 ('completion_date', models.DateField()),
                 ('country', models.CharField(max_length=50)),
-                ('client', models.CharField(blank=True, max_length=20, null=True)),
+                ('client', models.ForeignKey(to='UI.Client', null=False, on_delete=models.CASCADE)),
             ],
             options={
                 'db_table': 'project',
