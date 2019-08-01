@@ -15,7 +15,7 @@ class Client(models.Model):
     )
 
     client_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50, blank=False, null=False)
+    name = models.CharField(max_length=100, blank=False, null=False)
     type = models.CharField(max_length=50, choices=client_types, blank=False, null=False)
 
     # A function to send url requests to client detail page.

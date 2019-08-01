@@ -16,12 +16,13 @@ class Migration(migrations.Migration):
             name='Client',
             fields=[
                 ('client_id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=50)),
-                ('type', models.CharField(blank=True, max_length=14, null=True)),
+                ('name', models.CharField(max_length=100)),
+                ('type', models.CharField(blank=True, max_length=50, null=True)),
             ],
             options={
                 'db_table': 'client',
-                'managed': False,
+                'managed': True,
+                'ordering': ('name',)
             },
         ),
         migrations.CreateModel(
@@ -37,7 +38,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'data_source',
-                'managed': False,
+                'managed': True,
             },
         ),
         migrations.CreateModel(
@@ -50,17 +51,8 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'employee',
-                'managed': False,
-            },
-        ),
-        migrations.CreateModel(
-            name='EmployeeProject',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-            ],
-            options={
-                'db_table': 'employee_project',
-                'managed': False,
+                'managed': True,
+                'ordering': ('last_name',)
             },
         ),
         migrations.CreateModel(
@@ -71,7 +63,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'participant',
-                'managed': False,
+                'managed': True,
             },
         ),
         migrations.CreateModel(
@@ -79,13 +71,15 @@ class Migration(migrations.Migration):
             fields=[
                 ('project_id', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=50)),
-                ('project_type', models.CharField(blank=True, max_length=20, null=True)),
-                ('completion_type', models.DateField()),
-                ('country', models.CharField(max_length=9)),
+                ('project_type', models.CharField(max_length=20, blank=False, null=False)),
+                ('completion_date', models.DateField()),
+                ('country', models.CharField(max_length=50)),
+                ('client', models.CharField(blank=True, max_length=20, null=True)),
             ],
             options={
                 'db_table': 'project',
-                'managed': False,
+                'managed': True,
+                'ordering': ('name',)
             },
         ),
         migrations.CreateModel(
@@ -97,7 +91,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'question',
-                'managed': False,
+                'managed': True,
             },
         ),
         migrations.CreateModel(
@@ -107,7 +101,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'question_vignette',
-                'managed': False,
+                'managed': True,
             },
         ),
         migrations.CreateModel(
@@ -120,7 +114,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'response',
-                'managed': False,
+                'managed': True,
             },
         ),
         migrations.CreateModel(
@@ -132,7 +126,17 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'vignette',
-                'managed': False,
+                'managed': True,
+            },
+        ),
+        migrations.CreateModel(
+            name='ProjectDataSourceEmployee',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+            ],
+            options={
+                'db_table': 'project_data_source_employee',
+                'managed': True,
             },
         ),
     ]
