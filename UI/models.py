@@ -184,8 +184,17 @@ class Employee(models.Model):
 
 # A class to create participant objects.
 class Participant(models.Model):
+    participant_types = (('CHILDREN GIRLS','CHILDREN GIRLS'), ('GIRLS','GIRLS'), ('BOYS','BOYS'), ('WOMEN','WOMEN'),
+                         ('ADOLESCENT GIRLS','ADOLESCENT GIRLS'), ('CHILD GIRLS','CHILD GIRLS'), ('MEN','MEN'),
+                         ('ADOLESCENT BOYS','ADOLESCENT BOYS'), ('CHILD BOYS','CHILD BOYS'),
+                         ('FRONTLINE WORKERS','FRONTLINE WORKERS'), ('LOCAL AUTHORITIES','LOCAL AUTHORITIES'),
+                         ('CHILD PROTECTION NETWORK','CHILD PROTECTION NETWORK'), ('SOCIAL WORKER','SOCIAL WORKER'),
+                         ('PARA SOCIAL WORKER','PARA SOCIAL WORKER'), ('NGO STAFF','NGO STAFF'),
+                         ('GOVERNMENT OFFICIAL','GOVERNMENT OFFICIAL'), ('ADULT WOMEN','ADULT WOMEN'),
+                         ('ADULT MEN','ADULT MEN'), ('CHILDREN MIX', 'CHILDREN MIX'))
+
     participant_id = models.AutoField(primary_key=True)
-    participant_type = models.CharField(max_length=30, blank=False, null=False)
+    participant_type = models.CharField(max_length=30, choices=participant_types, blank=False, null=False)
 
     # A function to return a string representation of a participant in the form of the participant type.
     def __str__(self):
@@ -210,7 +219,7 @@ class ProjectDataSourceEmployee(models.Model):
 # A class to create question objects.
 class Question(models.Model):
     question_id = models.AutoField(primary_key=True)
-    question_text = models.CharField(max_length=255)
+    question_text = models.CharField(max_length=255, blank=False, null=False)
     question_rank = models.IntegerField(blank=True, null=True)
     vignettes = models.ManyToManyField('Vignette', through='QuestionVignette')
 
@@ -256,7 +265,12 @@ class Response(models.Model):
 
     # A function to return a string representation of a response in the form of the response content.
     def __str__(self):
-        return '%s %d %d' % (self.qualitative_response, self.quantitative_response, self.boolean_response)
+        if self.qualitative_response is not None:
+            return '%s' % (self.qualitative_response)
+        elif self.quantitative_response is not None:
+            return '%d' % (self.quantitative_response)
+        else:
+            return '%d' % (self.boolean_response)
 
     class Meta:
         managed = False
@@ -270,7 +284,7 @@ class Vignette(models.Model):
 
     vignette_id = models.AutoField(primary_key=True)
     vignette_type = models.CharField(max_length=50, choices=vignette_types, blank=False, null=False)
-    vignette_description = models.CharField(max_length=200, blank=True, null=True)
+    vignette_description = models.CharField(max_length=200, blank=False, null=False)
 
     # A function to send url requests to vignette detail page.
     def get_absolute_url(self):

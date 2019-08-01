@@ -26,12 +26,29 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='Project',
+            fields=[
+                ('project_id', models.AutoField(primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=50)),
+                ('project_type', models.CharField(max_length=20, blank=False, null=False)),
+                ('completion_date', models.DateField()),
+                ('country', models.CharField(max_length=50)),
+                ('client', models.ForeignKey(to='UI.Client', null=False, on_delete=models.CASCADE)),
+            ],
+            options={
+                'db_table': 'project',
+                'managed': True,
+                'ordering': ('name',)
+            },
+        ),
+        migrations.CreateModel(
             name='DataSource',
             fields=[
                 ('data_source_id', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=50)),
                 ('data_source_type', models.CharField(blank=True, max_length=19, null=True)),
-                ('aquisition_date', models.DateField(blank=True, null=True)),
+                ('acquisition_date', models.DateField(blank=True, null=True)),
+                ('project', models.ForeignKey(to='UI.Project', null=False, on_delete=models.CASCADE)),
                 ('province', models.CharField(blank=True, max_length=50, null=True)),
                 ('district', models.CharField(blank=True, max_length=50, null=True)),
                 ('community', models.CharField(blank=True, max_length=50, null=True)),
@@ -59,7 +76,7 @@ class Migration(migrations.Migration):
             name='Participant',
             fields=[
                 ('participant_id', models.AutoField(primary_key=True, serialize=False)),
-                ('participant_type', models.CharField(blank=True, max_length=30, null=True)),
+                ('participant_type', models.CharField(blank=False, max_length=30, null=False)),
             ],
             options={
                 'db_table': 'participant',
@@ -67,26 +84,10 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Project',
-            fields=[
-                ('project_id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=50)),
-                ('project_type', models.CharField(max_length=20, blank=False, null=False)),
-                ('completion_date', models.DateField()),
-                ('country', models.CharField(max_length=50)),
-                ('client', models.ForeignKey(to='UI.Client', null=False, on_delete=models.CASCADE)),
-            ],
-            options={
-                'db_table': 'project',
-                'managed': True,
-                'ordering': ('name',)
-            },
-        ),
-        migrations.CreateModel(
             name='Question',
             fields=[
                 ('question_id', models.AutoField(primary_key=True, serialize=False)),
-                ('question_text', models.CharField(max_length=255)),
+                ('question_text', models.CharField(max_length=255, blank=False, null=False)),
                 ('question_rank', models.IntegerField(blank=True, null=True)),
             ],
             options={
@@ -109,8 +110,11 @@ class Migration(migrations.Migration):
             fields=[
                 ('response_id', models.AutoField(primary_key=True, serialize=False)),
                 ('qualitative_response', models.CharField(max_length=255)),
-                ('quantitative_response', models.IntegerField()),
-                ('boolean_response', models.IntegerField()),
+                ('quantitative_response', models.IntegerField(blank=True, null=True)),
+                ('boolean_response', models.IntegerField(blank=True, null=True)),
+                ('participant', models.ForeignKey(to='UI.Participant', null=False, on_delete=models.CASCADE)),
+                ('question', models.ForeignKey(to='UI.Question', null=False, on_delete=models.CASCADE)),
+                ('data_source', models.ForeignKey(to='UI.DataSource', null=False, on_delete=models.CASCADE)),
             ],
             options={
                 'db_table': 'response',
@@ -121,8 +125,8 @@ class Migration(migrations.Migration):
             name='Vignette',
             fields=[
                 ('vignette_id', models.AutoField(primary_key=True, serialize=False)),
-                ('vignette_type', models.CharField(blank=True, max_length=19, null=True)),
-                ('vignette_description', models.CharField(blank=True, max_length=200, null=True)),
+                ('vignette_type', models.CharField(blank=True, max_length=50, null=True)),
+                ('vignette_description', models.CharField(blank=False, max_length=200, null=False)),
             ],
             options={
                 'db_table': 'vignette',
