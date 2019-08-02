@@ -56,6 +56,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'data_source',
                 'managed': True,
+                'ordering': ('name',)
             },
         ),
         migrations.CreateModel(
@@ -96,16 +97,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='QuestionVignette',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-            ],
-            options={
-                'db_table': 'question_vignette',
-                'managed': True,
-            },
-        ),
-        migrations.CreateModel(
             name='Response',
             fields=[
                 ('response_id', models.AutoField(primary_key=True, serialize=False)),
@@ -119,6 +110,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'response',
                 'managed': True,
+                'ordering': ('response_id',)
             },
         ),
         migrations.CreateModel(
@@ -134,9 +126,22 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='QuestionVignette',
+            fields=[
+                ('question', models.ForeignKey(to='UI.Question', null=False, on_delete=models.CASCADE)),
+                ('vignette', models.ForeignKey(to='UI.Vignette', null=False, on_delete=models.CASCADE)),
+            ],
+            options={
+                'db_table': 'question_vignette',
+                'managed': True,
+            },
+        ),
+        migrations.CreateModel(
             name='ProjectDataSourceEmployee',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('project', models.ForeignKey(to='UI.Project', null=False, on_delete=models.CASCADE)),
+                ('data_source', models.ForeignKey(to='UI.DataSource', null=False, on_delete=models.CASCADE)),
+                ('employee', models.ForeignKey(to='UI.Employee', null=False, on_delete=models.CASCADE)),
             ],
             options={
                 'db_table': 'project_data_source_employee',

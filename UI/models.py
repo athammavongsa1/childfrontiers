@@ -152,6 +152,7 @@ class DataSource(models.Model):
     class Meta:
         managed = False
         db_table = 'data_source'
+        ordering = ('name',)
 
 
 # A class to create employee objects.
@@ -237,6 +238,7 @@ class Question(models.Model):
     class Meta:
         managed = False
         db_table = 'question'
+        ordering = ('question_text',)
 
 
 # A class to create QuestionVignette objects.
@@ -275,6 +277,7 @@ class Response(models.Model):
     class Meta:
         managed = False
         db_table = 'response'
+        ordering = ('response_id',)
 
 
 # A class to create vignette objects.
@@ -297,3 +300,4 @@ class Vignette(models.Model):
     class Meta:
         managed = False
         db_table = 'vignette'
+        ordering = ('vignette_description',)
