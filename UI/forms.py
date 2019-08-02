@@ -48,7 +48,7 @@ class CreateDataSourceModelForm(ModelForm):
         fields = ['name', 'data_source_type', 'acquisition_date', 'project', 'province', 'district', 'community']
 
 
-# Form to create a reponse.
+# Form to create a response.
 class CreateResponseModelForm(ModelForm):
     participant = ModelChoiceField(queryset=Participant.objects.all(), to_field_name='participant_type',
                                    empty_label="Select participant")
