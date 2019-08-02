@@ -1,8 +1,26 @@
-from django.urls import path
-from . import views
+from django.urls import include, path
+from UI import views
+from rest_framework import routers
 
+
+router = routers.DefaultRouter()
+router.register(r'clients', views.ClientViewSet)
+router.register(r'employees', views.EmployeeViewSet)
+router.register(r'projects', views.ProjectViewSet)
+router.register(r'questions', views.QuestionViewSet)
+router.register(r'data_sources', views.DataSourceViewSet)
+router.register(r'vignettes', views.VignetteViewSet)
+router.register(r'responses', views.ResponseViewSet)
+
+# Redirect base URL to index page
 urlpatterns = [
-    path('', views.index, name='index')
+    path('', views.index, name='index'),
+]
+
+# Add paths for API serializers
+urlpatterns += [
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
 # Add paths for viewing and managing clients
