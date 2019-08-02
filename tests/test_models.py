@@ -9,7 +9,7 @@ class ProjectModelTest(TestCase):
     def setUpTestData(cls):
         client = Client.objects.create(name='UNICEF', type='UN')
         project = Project.objects.create(name='Nigeria Study', project_type='research', completion_date='2013-01-13',
-                               country='Vietnam', client=client)
+                                         country='Vietnam', client=client)
         ProjectModelTest.test_project_id = project.pk
 
     def test_name_label(self):
@@ -217,8 +217,10 @@ class DataSourceModelTest(TestCase):
         client = Client.objects.create(name='UNICEF', type='UN')
         project = Project.objects.create(name='Nigeria Study', project_type='research', completion_date='2013-01-13',
                                          country='Vietnam', client=client)
-        data_source = DataSource.objects.create(name='Nigeria Study', data_source_type='focus group', acquisition_date='2013-03-30',
-                                  project=project, province='Columbia', district='Jackson', community='Sylva')
+        data_source = DataSource.objects.create(name='Nigeria Study', data_source_type='focus group',
+                                                acquisition_date='2013-03-30',
+                                                project=project, province='Columbia', district='Jackson',
+                                                community='Sylva')
         DataSourceModelTest.test_data_source_id = data_source.pk
 
     def test_name_label(self):
@@ -301,7 +303,7 @@ class ResponseModelTest(TestCase):
         participant = Participant.objects.create(participant_type='NGO STAFF')
 
         response = Response.objects.create(qualitative_response="Yes", participant=participant, question=question,
-                                data_source=data_source)
+                                           data_source=data_source)
         ResponseModelTest.test_response_id = response.pk
 
     def test_qual_response_label(self):

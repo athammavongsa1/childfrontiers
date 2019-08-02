@@ -85,6 +85,7 @@ class ClientDetailViewTest(TestCase):
 
         self.assertTemplateUsed(response, 'UI/client_detail.html')
 
+
 class ClientDeleteViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -108,7 +109,7 @@ class ClientDeleteViewTest(TestCase):
         response = self.client.get(reverse('client_delete', kwargs={'pk': ClientDeleteViewTest.test_client_id}))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'UI/client_confirm_delete.html')
-    
+
     def test_redirect_if_not_logged_in(self):
         self.client.logout()
         response = self.client.get(reverse('client_delete', kwargs={'pk': ClientDeleteViewTest.test_client_id}))
@@ -166,12 +167,13 @@ class ProjectListViewTest(TestCase):
 
         self.assertTemplateUsed(response, 'UI/project_list.html')
 
+
 class ProjectDetailViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         client = Client.objects.create(name='UNICEF', type='UN')
         project = Project.objects.create(name='Nigeria Study', project_type='research', completion_date='2013-01-13',
-                               country='Vietnam', client=client)
+                                         country='Vietnam', client=client)
         ProjectDetailViewTest.test_project_id = project.pk
         test_user1 = User.objects.create_user(username='testuser1', password='password123')
         test_user1.save()
@@ -195,7 +197,8 @@ class ProjectDetailViewTest(TestCase):
     def test_redirect_if_not_logged_in(self):
         self.client.logout()
         response = self.client.get(reverse('project_detail', kwargs={'pk': ProjectDetailViewTest.test_project_id}))
-        self.assertRedirects(response, '/accounts/login/?next=/UI/project/' + str(ProjectDetailViewTest.test_project_id))
+        self.assertRedirects(response,
+                             '/accounts/login/?next=/UI/project/' + str(ProjectDetailViewTest.test_project_id))
 
     def test_logged_in_uses_correct_template(self):
         self.client.login(username='testuser1', password='password123')
@@ -207,12 +210,13 @@ class ProjectDetailViewTest(TestCase):
 
         self.assertTemplateUsed(response, 'UI/project_detail.html')
 
+
 class ProjectDeleteViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         client = Client.objects.create(name='UNICEF', type='UN')
         project = Project.objects.create(name='Nigeria Study', project_type='research', completion_date='2013-01-13',
-                               country='Vietnam', client=client)
+                                         country='Vietnam', client=client)
         ProjectDeleteViewTest.test_project_id = project.pk
         test_user1 = User.objects.create_user(username='testuser1', password='password123')
         test_user1.save()
@@ -236,7 +240,8 @@ class ProjectDeleteViewTest(TestCase):
     def test_redirect_if_not_logged_in(self):
         self.client.logout()
         response = self.client.get(reverse('project_delete', kwargs={'pk': ProjectDeleteViewTest.test_project_id}))
-        self.assertRedirects(response, '/accounts/login/?next=/UI/project/' + str(ProjectDeleteViewTest.test_project_id) +
+        self.assertRedirects(response,
+                             '/accounts/login/?next=/UI/project/' + str(ProjectDeleteViewTest.test_project_id) +
                              '/delete/')
 
     def test_logged_in_uses_correct_template(self):
@@ -248,6 +253,7 @@ class ProjectDeleteViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         self.assertTemplateUsed(response, 'UI/project_confirm_delete.html')
+
 
 class DataSourceListViewTest(TestCase):
     @classmethod
@@ -275,7 +281,7 @@ class DataSourceListViewTest(TestCase):
         response = self.client.get(reverse('data_source_list'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'UI/datasource_list.html')
-        
+
     def test_redirect_if_not_logged_in(self):
         self.client.logout()
         response = self.client.get(reverse('data_source_list'))
@@ -298,8 +304,8 @@ class DataSourceDetailViewTest(TestCase):
         client = Client.objects.create(name='UNICEF', type='UN')
         project = Project.objects.create(name='Nigeria Study', project_type='research', completion_date='2013-01-13',
                                          country='Vietnam', client=client)
-        data_source = DataSource.objects.create(name='Nigeria Study', data_source_type='focus group', 
-                                                acquisition_date='2013-03-30', project=project, province='Columbia', 
+        data_source = DataSource.objects.create(name='Nigeria Study', data_source_type='focus group',
+                                                acquisition_date='2013-03-30', project=project, province='Columbia',
                                                 district='Jackson', community='Sylva')
         DataSourceDetailViewTest.test_data_source_id = data_source.pk
         test_user1 = User.objects.create_user(username='testuser1', password='password123')
@@ -313,26 +319,26 @@ class DataSourceDetailViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_view_url_accessible_by_name(self):
-        response = self.client.get(reverse('data_source_detail', 
+        response = self.client.get(reverse('data_source_detail',
                                            kwargs={'pk': DataSourceDetailViewTest.test_data_source_id}))
         self.assertEqual(response.status_code, 200)
 
     def test_view_uses_correct_template(self):
-        response = self.client.get(reverse('data_source_detail', 
+        response = self.client.get(reverse('data_source_detail',
                                            kwargs={'pk': DataSourceDetailViewTest.test_data_source_id}))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'UI/datasource_detail.html')
-        
+
     def test_redirect_if_not_logged_in(self):
         self.client.logout()
-        response = self.client.get(reverse('data_source_detail', 
+        response = self.client.get(reverse('data_source_detail',
                                            kwargs={'pk': DataSourceDetailViewTest.test_data_source_id}))
-        self.assertRedirects(response, '/accounts/login/?next=/UI/data_source/' + 
+        self.assertRedirects(response, '/accounts/login/?next=/UI/data_source/' +
                              str(DataSourceDetailViewTest.test_data_source_id))
 
     def test_logged_in_uses_correct_template(self):
         self.client.login(username='testuser1', password='password123')
-        response = self.client.get(reverse('data_source_detail', 
+        response = self.client.get(reverse('data_source_detail',
                                            kwargs={'pk': DataSourceDetailViewTest.test_data_source_id}))
 
         self.assertEqual(str(response.context['user']), 'testuser1')
@@ -349,8 +355,8 @@ class DataSourceDeleteViewTest(TestCase):
         project = Project.objects.create(name='Nigeria Study', project_type='research',
                                          completion_date='2013-01-13',
                                          country='Vietnam', client=client)
-        data_source = DataSource.objects.create(name='Nigeria Study', data_source_type='focus group', 
-                                                acquisition_date='2013-03-30', project=project, province='Columbia', 
+        data_source = DataSource.objects.create(name='Nigeria Study', data_source_type='focus group',
+                                                acquisition_date='2013-03-30', project=project, province='Columbia',
                                                 district='Jackson', community='Sylva')
         DataSourceDeleteViewTest.test_data_source_id = data_source.pk
         test_user1 = User.objects.create_user(username='testuser1', password='password123')
@@ -392,7 +398,8 @@ class DataSourceDeleteViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         self.assertTemplateUsed(response, 'UI/datasource_confirm_delete.html')
-        
+
+
 class EmployeeListViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -513,6 +520,7 @@ class EmployeeDeleteViewTest(TestCase):
 
         self.assertTemplateUsed(response, 'UI/employee_confirm_delete.html')
 
+
 class QuestionListViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -550,6 +558,7 @@ class QuestionListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         self.assertTemplateUsed(response, 'UI/question_list.html')
+
 
 class QuestionDetailViewTest(TestCase):
     @classmethod
@@ -591,6 +600,7 @@ class QuestionDetailViewTest(TestCase):
 
         self.assertTemplateUsed(response, 'UI/question_detail.html')
 
+
 class QuestionDeleteViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -630,6 +640,7 @@ class QuestionDeleteViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         self.assertTemplateUsed(response, 'UI/question_confirm_delete.html')
+
 
 class ResponseListViewTest(TestCase):
     @classmethod
@@ -695,7 +706,7 @@ class ResponseDetailViewTest(TestCase):
         participant = Participant.objects.create(participant_type='NGO STAFF')
 
         response = Response.objects.create(qualitative_response="Yes", participant=participant, question=question,
-                                data_source=data_source)
+                                           data_source=data_source)
         ResponseDetailViewTest.test_response_id = response.pk
         test_user1 = User.objects.create_user(username='testuser1', password='password123')
         test_user1.save()
@@ -732,6 +743,7 @@ class ResponseDetailViewTest(TestCase):
 
         self.assertTemplateUsed(response, 'UI/response_detail.html')
 
+
 class ResponseDeleteViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -746,7 +758,7 @@ class ResponseDeleteViewTest(TestCase):
         participant = Participant.objects.create(participant_type='NGO STAFF')
 
         response = Response.objects.create(qualitative_response="Yes", participant=participant, question=question,
-                                data_source=data_source)
+                                           data_source=data_source)
         ResponseDeleteViewTest.test_response_id = response.pk
         test_user1 = User.objects.create_user(username='testuser1', password='password123')
         test_user1.save()

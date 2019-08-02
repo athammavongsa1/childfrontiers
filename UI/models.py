@@ -185,14 +185,14 @@ class Employee(models.Model):
 
 # A class to create participant objects.
 class Participant(models.Model):
-    participant_types = (('CHILDREN GIRLS','CHILDREN GIRLS'), ('GIRLS','GIRLS'), ('BOYS','BOYS'), ('WOMEN','WOMEN'),
-                         ('ADOLESCENT GIRLS','ADOLESCENT GIRLS'), ('CHILD GIRLS','CHILD GIRLS'), ('MEN','MEN'),
-                         ('ADOLESCENT BOYS','ADOLESCENT BOYS'), ('CHILD BOYS','CHILD BOYS'),
-                         ('FRONTLINE WORKERS','FRONTLINE WORKERS'), ('LOCAL AUTHORITIES','LOCAL AUTHORITIES'),
-                         ('CHILD PROTECTION NETWORK','CHILD PROTECTION NETWORK'), ('SOCIAL WORKER','SOCIAL WORKER'),
-                         ('PARA SOCIAL WORKER','PARA SOCIAL WORKER'), ('NGO STAFF','NGO STAFF'),
-                         ('GOVERNMENT OFFICIAL','GOVERNMENT OFFICIAL'), ('ADULT WOMEN','ADULT WOMEN'),
-                         ('ADULT MEN','ADULT MEN'), ('CHILDREN MIX', 'CHILDREN MIX'))
+    participant_types = (('CHILDREN GIRLS', 'CHILDREN GIRLS'), ('GIRLS', 'GIRLS'), ('BOYS', 'BOYS'), ('WOMEN', 'WOMEN'),
+                         ('ADOLESCENT GIRLS', 'ADOLESCENT GIRLS'), ('CHILD GIRLS', 'CHILD GIRLS'), ('MEN', 'MEN'),
+                         ('ADOLESCENT BOYS', 'ADOLESCENT BOYS'), ('CHILD BOYS', 'CHILD BOYS'),
+                         ('FRONTLINE WORKERS', 'FRONTLINE WORKERS'), ('LOCAL AUTHORITIES', 'LOCAL AUTHORITIES'),
+                         ('CHILD PROTECTION NETWORK', 'CHILD PROTECTION NETWORK'), ('SOCIAL WORKER', 'SOCIAL WORKER'),
+                         ('PARA SOCIAL WORKER', 'PARA SOCIAL WORKER'), ('NGO STAFF', 'NGO STAFF'),
+                         ('GOVERNMENT OFFICIAL', 'GOVERNMENT OFFICIAL'), ('ADULT WOMEN', 'ADULT WOMEN'),
+                         ('ADULT MEN', 'ADULT MEN'), ('CHILDREN MIX', 'CHILDREN MIX'))
 
     participant_id = models.AutoField(primary_key=True)
     participant_type = models.CharField(max_length=30, choices=participant_types, blank=False, null=False)

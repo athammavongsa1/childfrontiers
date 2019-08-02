@@ -1,5 +1,6 @@
 from django.contrib import admin
-from UI.models import Client, DataSource, Employee, ProjectDataSourceEmployee, Participant, Project, Question, QuestionVignette, Response, Vignette
+from UI.models import Client, DataSource, Employee, ProjectDataSourceEmployee, Participant, Project, Question, \
+    QuestionVignette, Response, Vignette
 
 # Register model representations of database tables.
 admin.site.register(Client)
@@ -12,4 +13,3 @@ admin.site.register(Question)
 admin.site.register(QuestionVignette)
 admin.site.register(Response)
 admin.site.register(Vignette)
-

@@ -2,6 +2,7 @@ from django.test import TestCase
 from UI.forms import CreateClientModelForm, CreateDataSourceModelForm, CreateEmployeeModelForm, CreateProjectModelForm, \
     CreateQuestionModelForm, CreateResponseModelForm, CreateVignetteModelForm
 
+
 # Test suite for forms.
 class CreateClientFormTest(TestCase):
     def test_name_label(self):
@@ -11,6 +12,7 @@ class CreateClientFormTest(TestCase):
     def test_type_label(self):
         form = CreateClientModelForm()
         self.assertTrue(form.fields['type'].label == 'Type')
+
 
 class CreateEmployeeFormTest(TestCase):
     def test_first_name_label(self):
@@ -25,6 +27,7 @@ class CreateEmployeeFormTest(TestCase):
         form = CreateEmployeeModelForm()
         self.assertTrue(form.fields['job_title'].label == 'Job title')
 
+
 class CreateProjectFormTest(TestCase):
     def test_name_label(self):
         form = CreateProjectModelForm()
@@ -38,6 +41,7 @@ class CreateProjectFormTest(TestCase):
         form = CreateProjectModelForm()
         self.assertTrue(form.fields['completion_date'].label == 'Completion date')
 
+
 class CreateQuestionFormTest(TestCase):
     def test_text_label(self):
         form = CreateQuestionModelForm()
@@ -47,6 +51,7 @@ class CreateQuestionFormTest(TestCase):
         form = CreateQuestionModelForm()
         self.assertTrue(form.fields['question_rank'].label == 'Question rank')
 
+
 class CreateVignetteFormTest(TestCase):
     def test_type_label(self):
         form = CreateVignetteModelForm()
@@ -55,6 +60,7 @@ class CreateVignetteFormTest(TestCase):
     def test_description_label(self):
         form = CreateVignetteModelForm()
         self.assertTrue(form.fields['vignette_description'].label == 'Vignette description')
+
 
 class CreateDataSourceFormTest(TestCase):
     def test_name_label(self):
@@ -81,6 +87,7 @@ class CreateDataSourceFormTest(TestCase):
         form = CreateDataSourceModelForm()
         self.assertTrue(form.fields['community'].label == 'Community')
 
+
 class CreateResonseFormTest(TestCase):
     def test_qual_label(self):
         form = CreateResponseModelForm()
@@ -93,4 +100,3 @@ class CreateResonseFormTest(TestCase):
     def test_bool_label(self):
         form = CreateResponseModelForm()
         self.assertTrue(form.fields['boolean_response'].label == 'Boolean response')
-

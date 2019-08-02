@@ -7,10 +7,12 @@ class ClientSerializer(serializers.HyperlinkedModelSerializer):
         model = Client
         fields = ['name', 'type']
 
+
 class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Employee
         fields = ['first_name', 'last_name', 'job_title']
+
 
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
     client = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')
@@ -19,15 +21,18 @@ class ProjectSerializer(serializers.HyperlinkedModelSerializer):
         model = Project
         fields = ['name', 'project_type', 'completion_date', 'country', 'client']
 
+
 class QuestionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Question
         fields = ['question_id', 'question_text', 'question_rank']
 
+
 class VignetteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Vignette
         fields = ['vignette_type', 'vignette_description']
+
 
 class DataSourceSerializer(serializers.HyperlinkedModelSerializer):
     project = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')

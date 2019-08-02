@@ -2,7 +2,6 @@ from django.urls import include, path
 from UI import views
 from rest_framework import routers
 
-
 router = routers.DefaultRouter()
 router.register(r'clients', views.ClientViewSet)
 router.register(r'employees', views.EmployeeViewSet)
@@ -85,5 +84,3 @@ urlpatterns += [
     path('response/<int:pk>', views.ResponseDetailView.as_view(), name='response_detail'),
     path('response/list', views.ResponseListView.as_view(), name='response_list')
 ]
-
-

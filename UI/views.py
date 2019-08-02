@@ -59,6 +59,7 @@ class ClientListView(LoginRequiredMixin, generic.ListView):
     model = Client
     paginate_by = 12
 
+
 # View for client serializer
 class ClientViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
     queryset = Client.objects.all().order_by('name')
@@ -104,6 +105,7 @@ class EmployeeListView(LoginRequiredMixin, generic.ListView):
     model = Employee
     paginate_by = 12
 
+
 # View for employee serializer
 class EmployeeViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
     queryset = Employee.objects.all().order_by('last_name')
@@ -146,10 +148,12 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     def data_source(self):
         return DataSource.objects.all()
 
+
 # View for list projects page.
 class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
     paginate_by = 12
+
 
 # View for project serializer
 class ProjectViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
@@ -196,10 +200,12 @@ class QuestionListView(LoginRequiredMixin, generic.ListView):
     model = Question
     paginate_by = 12
 
+
 # View for question serializer
 class QuestionViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
     queryset = Question.objects.all().order_by('question_text')
     serializer_class = QuestionSerializer
+
 
 # View for create vignette page.
 class VignetteCreate(LoginRequiredMixin, CreateView):
@@ -240,10 +246,12 @@ class VignetteListView(LoginRequiredMixin, generic.ListView):
     model = Vignette
     paginate_by = 12
 
+
 # View for vignette serializer
 class VignetteViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
     queryset = Vignette.objects.all().order_by('vignette_description')
     serializer_class = VignetteSerializer
+
 
 # View for create data source page.
 class DataSourceCreate(LoginRequiredMixin, CreateView):
@@ -289,10 +297,12 @@ class DataSourceListView(LoginRequiredMixin, generic.ListView):
     model = DataSource
     paginate_by = 12
 
+
 # View for data source serializer
 class DataSourceViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
     queryset = DataSource.objects.all().order_by('name')
     serializer_class = DataSourceSerializer
+
 
 # View for create response page.
 class ResponseCreate(LoginRequiredMixin, CreateView):
@@ -334,6 +344,7 @@ class ResponseDetailView(LoginRequiredMixin, generic.DetailView):
 class ResponseListView(LoginRequiredMixin, generic.ListView):
     model = Response
     paginate_by = 12
+
 
 # View for response serializer
 class ResponseViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
