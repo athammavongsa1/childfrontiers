@@ -2,6 +2,7 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Response
 
 
@@ -14,7 +15,7 @@ def index(request):
 
 
 # View for create client page.
-class ClientCreate(CreateView):
+class ClientCreate(LoginRequiredMixin, CreateView):
     model = Client
     fields = '__all__'
     success_url = reverse_lazy('client_list')
@@ -26,7 +27,7 @@ class ClientCreate(CreateView):
 
 
 # View for update client page.
-class ClientUpdate(UpdateView):
+class ClientUpdate(LoginRequiredMixin, UpdateView):
     model = Client
     fields = '__all__'
 
@@ -37,13 +38,13 @@ class ClientUpdate(UpdateView):
 
 
 # View for delete client page.
-class ClientDelete(DeleteView):
+class ClientDelete(LoginRequiredMixin, DeleteView):
     model = Client
     success_url = reverse_lazy('client_list')
 
 
 # View for client detail page.
-class ClientDetailView(generic.DetailView):
+class ClientDetailView(LoginRequiredMixin, generic.DetailView):
     model = Client
 
     def project(self):
@@ -51,13 +52,13 @@ class ClientDetailView(generic.DetailView):
 
 
 # View for list clients page.
-class ClientListView(generic.ListView):
+class ClientListView(LoginRequiredMixin, generic.ListView):
     model = Client
     paginate_by = 12
 
 
 # View for create employee page.
-class EmployeeCreate(CreateView):
+class EmployeeCreate(LoginRequiredMixin, CreateView):
     model = Employee
     fields = '__all__'
     success_url = reverse_lazy('employee_list')
@@ -69,7 +70,7 @@ class EmployeeCreate(CreateView):
 
 
 # View for update employee page.
-class EmployeeUpdate(UpdateView):
+class EmployeeUpdate(LoginRequiredMixin, UpdateView):
     model = Employee
     fields = '__all__'
 
@@ -80,24 +81,24 @@ class EmployeeUpdate(UpdateView):
 
 
 # View for delete employee page.
-class EmployeeDelete(DeleteView):
+class EmployeeDelete(LoginRequiredMixin, DeleteView):
     model = Employee
     success_url = reverse_lazy('employee_list')
 
 
 # View for employee detail page.
-class EmployeeDetailView(generic.DetailView):
+class EmployeeDetailView(LoginRequiredMixin, generic.DetailView):
     model = Employee
 
 
 # View for list employees page.
-class EmployeeListView(generic.ListView):
+class EmployeeListView(LoginRequiredMixin, generic.ListView):
     model = Employee
     paginate_by = 12
 
 
 # View for create project page.
-class ProjectCreate(CreateView):
+class ProjectCreate(LoginRequiredMixin, CreateView):
     model = Project
     fields = '__all__'
     success_url = reverse_lazy('project_list')
@@ -109,7 +110,7 @@ class ProjectCreate(CreateView):
 
 
 # View for update project page.
-class ProjectUpdate(UpdateView):
+class ProjectUpdate(LoginRequiredMixin, UpdateView):
     model = Project
     fields = '__all__'
 
@@ -120,13 +121,13 @@ class ProjectUpdate(UpdateView):
 
 
 # View for delete project page.
-class ProjectDelete(DeleteView):
+class ProjectDelete(LoginRequiredMixin, DeleteView):
     model = Project
     success_url = reverse_lazy('project_list')
 
 
 # View for project detail page.
-class ProjectDetailView(generic.DetailView):
+class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
 
     def data_source(self):
@@ -134,13 +135,13 @@ class ProjectDetailView(generic.DetailView):
 
 
 # View for list projects page.
-class ProjectListView(generic.ListView):
+class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
     paginate_by = 12
 
 
 # View for create question page.
-class QuestionCreate(CreateView):
+class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
     fields = '__all__'
     success_url = reverse_lazy('question_list')
@@ -152,7 +153,7 @@ class QuestionCreate(CreateView):
 
 
 # View for update question page.
-class QuestionUpdate(UpdateView):
+class QuestionUpdate(LoginRequiredMixin, UpdateView):
     model = Question
     fields = '__all__'
 
@@ -163,24 +164,24 @@ class QuestionUpdate(UpdateView):
 
 
 # View for delete question page.
-class QuestionDelete(DeleteView):
+class QuestionDelete(LoginRequiredMixin, DeleteView):
     model = Question
     success_url = reverse_lazy('question_list')
 
 
 # View for question detail page.
-class QuestionDetailView(generic.DetailView):
+class QuestionDetailView(LoginRequiredMixin, generic.DetailView):
     model = Question
 
 
 # View for list questions page.
-class QuestionListView(generic.ListView):
+class QuestionListView(LoginRequiredMixin, generic.ListView):
     model = Question
     paginate_by = 12
 
 
 # View for create vignette page.
-class VignetteCreate(CreateView):
+class VignetteCreate(LoginRequiredMixin, CreateView):
     model = Vignette
     fields = '__all__'
     success_url = reverse_lazy('vignette_list')
@@ -192,7 +193,7 @@ class VignetteCreate(CreateView):
 
 
 # View for update vignette page.
-class VignetteUpdate(UpdateView):
+class VignetteUpdate(LoginRequiredMixin, UpdateView):
     model = Vignette
     fields = '__all__'
 
@@ -203,24 +204,24 @@ class VignetteUpdate(UpdateView):
 
 
 # View for delete vignette page.
-class VignetteDelete(DeleteView):
+class VignetteDelete(LoginRequiredMixin, DeleteView):
     model = Vignette
     success_url = reverse_lazy('vignette_list')
 
 
 # View for vignette detail page.
-class VignetteDetailView(generic.DetailView):
+class VignetteDetailView(LoginRequiredMixin, generic.DetailView):
     model = Vignette
 
 
 # View for list vignettes page.
-class VignetteListView(generic.ListView):
+class VignetteListView(LoginRequiredMixin, generic.ListView):
     model = Vignette
     paginate_by = 12
 
 
 # View for create data source page.
-class DataSourceCreate(CreateView):
+class DataSourceCreate(LoginRequiredMixin, CreateView):
     model = DataSource
     fields = '__all__'
 
@@ -234,7 +235,7 @@ class DataSourceCreate(CreateView):
 
 
 # View for update data source page.
-class DataSourceUpdate(UpdateView):
+class DataSourceUpdate(LoginRequiredMixin, UpdateView):
     model = DataSource
     fields = '__all__'
 
@@ -245,13 +246,13 @@ class DataSourceUpdate(UpdateView):
 
 
 # View for delete data source page.
-class DataSourceDelete(DeleteView):
+class DataSourceDelete(LoginRequiredMixin, DeleteView):
     model = DataSource
     success_url = reverse_lazy('data_source_list')
 
 
 # View for data source detail page.
-class DataSourceDetailView(generic.DetailView):
+class DataSourceDetailView(LoginRequiredMixin, generic.DetailView):
     model = DataSource
 
     def response(self):
@@ -259,13 +260,13 @@ class DataSourceDetailView(generic.DetailView):
 
 
 # View for list data sources page.
-class DataSourceListView(generic.ListView):
+class DataSourceListView(LoginRequiredMixin, generic.ListView):
     model = DataSource
     paginate_by = 12
 
 
 # View for create response page.
-class ResponseCreate(CreateView):
+class ResponseCreate(LoginRequiredMixin, CreateView):
     model = Response
     fields = '__all__'
 
@@ -279,7 +280,7 @@ class ResponseCreate(CreateView):
 
 
 # View for update response page.
-class ResponseUpdate(UpdateView):
+class ResponseUpdate(LoginRequiredMixin, UpdateView):
     model = Response
     fields = '__all__'
 
@@ -290,17 +291,17 @@ class ResponseUpdate(UpdateView):
 
 
 # View for delete response page.
-class ResponseDelete(DeleteView):
+class ResponseDelete(LoginRequiredMixin, DeleteView):
     model = Response
     success_url = reverse_lazy('response_list')
 
 
 # View for response detail page.
-class ResponseDetailView(generic.DetailView):
+class ResponseDetailView(LoginRequiredMixin, generic.DetailView):
     model = Response
 
 
 # View for list responses page.
-class ResponseListView(generic.ListView):
+class ResponseListView(LoginRequiredMixin, generic.ListView):
     model = Response
     paginate_by = 12
