@@ -29,5 +29,6 @@
     {% else %}
         <p>There are no questions in the database.</p>
     {% endif %}
-    <p><a href="{% url 'question_create' %}" class="btn btn-secondary">Add Question</a></p>
+    <p><a href="{% url 'question_create' %}" class="btn btn-secondary">Add Question</a>
+    <a href="../questions" target="_blank" class="btn btn-secondary">View JSON</a></p>
 {% endblock %}

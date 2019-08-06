@@ -23,5 +23,6 @@
     {% else %}
         <p>There are no employees in the database.</p>
     {% endif %}
-    <p><a href="{% url 'employee_create' %}" class="btn btn-secondary">Add Employee</a></p>
+    <p><a href="{% url 'employee_create' %}" class="btn btn-secondary">Add Employee</a>
+    <a href="../employees" target="_blank" class="btn btn-secondary">View JSON</a></p>
 {% endblock %}

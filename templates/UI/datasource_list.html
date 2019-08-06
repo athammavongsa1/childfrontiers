@@ -15,5 +15,6 @@
     {% else %}
         <p>There are no data sources in the database.</p>
     {% endif %}
-    <p><a href="{% url 'data_source_create' %}" class="btn btn-secondary">Add Data Source</a></p>
+    <p><a href="{% url 'data_source_create' %}" class="btn btn-secondary">Add Data Source</a>
+    <a href="../data_sources" target="_blank" class="btn btn-secondary">View JSON</a></p>
 {% endblock %}

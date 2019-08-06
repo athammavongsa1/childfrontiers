@@ -26,5 +26,6 @@
     {% else %}
         <p>There are no vignettes in the database.</p>
     {% endif %}
-    <p><a href="{% url 'vignette_create' %}" class="btn btn-secondary">Add Vignette</a></p>
+    <p><a href="{% url 'vignette_create' %}" class="btn btn-secondary">Add Vignette</a>
+    <a href="../vignettes" target="_blank" class="btn btn-secondary">View JSON</a></p>
 {% endblock %}

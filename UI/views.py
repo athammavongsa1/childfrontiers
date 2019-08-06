@@ -4,6 +4,9 @@ from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework import viewsets
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
 from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Response
 from UI.serializers import ClientSerializer, EmployeeSerializer, ProjectSerializer, QuestionSerializer, \
     VignetteSerializer, DataSourceSerializer, ResponseSerializer

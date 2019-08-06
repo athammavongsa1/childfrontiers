@@ -30,5 +30,6 @@
     {% else %}
         <p>There are no responses in the database.</p>
     {% endif %}
-    <p><a href="{% url 'response_create' %}" class="btn btn-secondary">Add Response</a></p>
+    <p><a href="{% url 'response_create' %}" class="btn btn-secondary">Add Response</a>
+    <a href="../repsonses" target="_blank" class="btn btn-secondary">View JSON</a></p>
 {% endblock %}
