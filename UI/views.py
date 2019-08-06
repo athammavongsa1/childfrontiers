@@ -3,10 +3,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from rest_framework import viewsets
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
+from rest_framework import viewsets, mixins
+from rest_framework.generics import GenericAPIView
 from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Response
 from UI.serializers import ClientSerializer, EmployeeSerializer, ProjectSerializer, QuestionSerializer, \
     VignetteSerializer, DataSourceSerializer, ResponseSerializer
@@ -63,10 +61,13 @@ class ClientListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 12
 
 
-# View for client serializer
-class ClientViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
+# View for client JSON
+class ClientJSON(LoginRequiredMixin, GenericAPIView, mixins.ListModelMixin):
     queryset = Client.objects.all().order_by('name')
     serializer_class = ClientSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, *kwargs)
 
 
 # View for create employee page.
@@ -109,10 +110,13 @@ class EmployeeListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 12
 
 
-# View for employee serializer
-class EmployeeViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
+# View for employee JSON
+class EmployeeJSON(LoginRequiredMixin, GenericAPIView, mixins.ListModelMixin):
     queryset = Employee.objects.all().order_by('last_name')
     serializer_class = EmployeeSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, *kwargs)
 
 
 # View for create project page.
@@ -158,10 +162,13 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 12
 
 
-# View for project serializer
-class ProjectViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
+# View for project JSON
+class ProjectJSON(LoginRequiredMixin, GenericAPIView, mixins.ListModelMixin):
     queryset = Project.objects.all().order_by('name')
     serializer_class = ProjectSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, *kwargs)
 
 
 # View for create question page.
@@ -204,10 +211,13 @@ class QuestionListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 12
 
 
-# View for question serializer
-class QuestionViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
+# View for question JSON
+class QuestionJSON(LoginRequiredMixin, GenericAPIView, mixins.ListModelMixin):
     queryset = Question.objects.all().order_by('question_text')
     serializer_class = QuestionSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, *kwargs)
 
 
 # View for create vignette page.
@@ -250,10 +260,13 @@ class VignetteListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 12
 
 
-# View for vignette serializer
-class VignetteViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
+# View for vignette JSON
+class VignetteJSON(LoginRequiredMixin, GenericAPIView, mixins.ListModelMixin):
     queryset = Vignette.objects.all().order_by('vignette_description')
     serializer_class = VignetteSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, *kwargs)
 
 
 # View for create data source page.
@@ -301,10 +314,13 @@ class DataSourceListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 12
 
 
-# View for data source serializer
-class DataSourceViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
+# View for data_source JSON
+class DataSourceJSON(LoginRequiredMixin, GenericAPIView, mixins.ListModelMixin):
     queryset = DataSource.objects.all().order_by('name')
     serializer_class = DataSourceSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, *kwargs)
 
 
 # View for create response page.
@@ -349,7 +365,10 @@ class ResponseListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 12
 
 
-# View for response serializer
-class ResponseViewSet(LoginRequiredMixin, viewsets.ModelViewSet):
+# View for response JSON
+class ResponseJSON(LoginRequiredMixin, GenericAPIView, mixins.ListModelMixin):
     queryset = Response.objects.all().order_by('response_id')
     serializer_class = ResponseSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, *kwargs)
