@@ -1,1 +1,1 @@
-web: gunicorn UI.wsgi --log-file -
+web: gunicorn childfrontiers.wsgi --log-file -
