@@ -135,4 +135,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = ['hidden-dawn-26210.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['child-frontiers.herokuapp.com', 'localhost']
