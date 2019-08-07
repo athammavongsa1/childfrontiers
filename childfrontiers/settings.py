@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'l2lso9xho0ekgctq',
         'USER': 'tue82zn2w9vexspc',
-        'PASSWORD': 'ypq3w1v3xc798bf8',
+        'PASSWORD': os.environ.get('JAWSDB_PW'),
         'HOST': 'phtfaw4p6a970uc0.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
         'PORT': '',
     }
