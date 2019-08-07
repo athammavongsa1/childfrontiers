@@ -7,6 +7,7 @@
     <h1>Delete Client</h1>
 
     <p>Are you sure you want to delete the client: {{ client.name }}?</p>
+    <p>Deleting this client will delete all associated projects, data sources and responses!</p>
 
     <form action="" method="POST">
         {% csrf_token %}

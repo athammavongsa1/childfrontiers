@@ -7,6 +7,7 @@
     <h1>Delete Data Source</h1>
 
     <p>Are you sure you want to delete the data source: {{ datasource.name }}?</p>
+    <p>Deleting this data source will delete all associated responses!</p>
 
     <form action="" method="POST">
         {% csrf_token %}
