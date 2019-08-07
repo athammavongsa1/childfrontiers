@@ -5,13 +5,26 @@
 {% block content %}
     <h2>Data Source List</h2>
     {% if datasource_list %}
-        <ul>
-            {% for datasource in datasource_list %}
-                <p>
-                    <a href="{{ datasource.get_absolute_url }}">{{ datasource.name }}</a>
-                </p>
-            {% endfor %}
-        </ul>
+         <div class="table-responsive">
+            <table id="table" class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Project</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for datasource in datasource_list %}
+                    <tr>
+                        <td><a href="{{ datasource.get_absolute_url }}">{{ datasource.name }}</a></td>
+                        <td>{{ datasource.type }}</td>
+                    <td>{{ datasource.project }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
         <p>There are no data sources in the database.</p>
     {% endif %}
