@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             name='Project',
             fields=[
                 ('project_id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=50)),
+                ('name', models.CharField(max_length=200)),
                 ('project_type', models.CharField(max_length=20, blank=False, null=False)),
                 ('completion_date', models.DateField()),
                 ('country', models.CharField(max_length=50)),

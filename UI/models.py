@@ -106,7 +106,7 @@ class Project(models.Model):
                          ('Vietnam', 'Vietnam'), ('Yemen', 'Yemen'), ('Zambia', 'Zambia'), ('Zimbabwe', 'Zimbabwe'))
 
     project_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
     project_type = models.CharField(max_length=20, choices=project_types, blank=False, null=False)
     completion_date = models.DateField(blank=False, null=False)
     country = models.CharField(max_length=50, choices=project_countries, blank=False, null=False)
