@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # A class to create client objects.
@@ -256,7 +257,8 @@ class Response(models.Model):
     response_id = models.AutoField(primary_key=True)
     qualitative_response = models.CharField(max_length=255, blank=True, null=True)
     quantitative_response = models.IntegerField(blank=True, null=True)
-    boolean_response = models.IntegerField(blank=True, null=True)
+    boolean_response = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(1)],
+                                                   blank=True, null=True)
     participant = models.ForeignKey(Participant, models.DO_NOTHING)
     question = models.ForeignKey(Question, models.DO_NOTHING)
     data_source = models.ForeignKey(DataSource, models.DO_NOTHING)

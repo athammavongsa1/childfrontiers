@@ -100,7 +100,7 @@ class Migration(migrations.Migration):
                 ('response_id', models.AutoField(primary_key=True, serialize=False)),
                 ('qualitative_response', models.CharField(max_length=255)),
                 ('quantitative_response', models.IntegerField(blank=True, null=True)),
-                ('boolean_response', models.IntegerField(blank=True, null=True)),
+                ('boolean_response', models.PositiveIntegerField(blank=True, null=True)),
                 ('participant', models.ForeignKey(to='UI.Participant', null=False, on_delete=models.CASCADE)),
                 ('question', models.ForeignKey(to='UI.Question', null=False, on_delete=models.CASCADE)),
                 ('data_source', models.ForeignKey(to='UI.DataSource', null=False, on_delete=models.CASCADE)),

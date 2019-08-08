@@ -1,7 +1,6 @@
 from django.forms import ModelForm, ModelChoiceField
 from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Participant, Response
 
-
 # Form to create a client.
 class CreateClientModelForm(ModelForm):
     class Meta:
@@ -61,3 +60,5 @@ class CreateResponseModelForm(ModelForm):
         model = Response
         fields = ['qualitative_response', 'quantitative_response', 'boolean_response', 'participant', 'question',
                   'data_source']
+        help_texts = {'boolean_response': ('Enter 1 for True or 0 for False')}
+        labels = {'boolean_response': 'True or False'}
