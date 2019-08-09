@@ -20,7 +20,7 @@
                     <tr>
                         <td><a href="{{ question.get_absolute_url }}">{{ question.question_text }}</a></td>
                         <td>{{ question.question_rank }}</td>
-                    <td>{% for vignette in question.vignettes.all %}{{ vignette }}<br/>{% endfor %}</td>
+                        <td>{% for vignette in question.vignettes.all %}{{ vignette }}<br/>{% endfor %}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

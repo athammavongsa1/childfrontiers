@@ -13,7 +13,8 @@
         <p><strong>Province:</strong> {{ datasource.province }}</p>
         <p><strong>District:</strong> {{ datasource.district }}</p>
         <p><strong>Community:</strong> {{ datasource.community }}</p>
-        <p><strong>Team members:</strong> <br/>{% for employee in datasource.team.all %}{{ employee }}<br/>{% endfor %}</p>
+        <p><strong>Team members:</strong> <br/>{% for employee in datasource.team.all %}{{ employee }}<br/>{% endfor %}
+        </p>
     </ul>
     <p><a href="{{ datasource.data_source_id }}/update/" class="btn btn-secondary">Modify data source</a>
         <a href="{{ datasource.data_source_id }}/delete/" class="btn btn-secondary">Delete data source</a></p>

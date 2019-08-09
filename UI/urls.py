@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import path
 from UI import views
 
 # Redirect base URL to index page

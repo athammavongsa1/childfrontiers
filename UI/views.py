@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from rest_framework import viewsets, mixins
+from rest_framework import mixins
 from rest_framework.generics import GenericAPIView
 from UI.models import Client, Employee, Project, Question, Vignette, DataSource, Response
 from UI.serializers import ClientSerializer, EmployeeSerializer, ProjectSerializer, QuestionSerializer, \

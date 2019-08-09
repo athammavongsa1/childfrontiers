@@ -1,4 +1,4 @@
-# This is an auto-generated Django model module that creates modules for database entitites.
+# This is an auto-generated Django model module that creates modules for database entities.
 
 from django.db import models
 from django.urls import reverse
@@ -193,8 +193,8 @@ class Participant(models.Model):
                          ('CHILD PROTECTION NETWORK', 'CHILD PROTECTION NETWORK'), ('SOCIAL WORKER', 'SOCIAL WORKER'),
                          ('PARA SOCIAL WORKER', 'PARA SOCIAL WORKER'), ('NGO STAFF', 'NGO STAFF'),
                          ('GOVERNMENT OFFICIAL', 'GOVERNMENT OFFICIAL'), ('ADULT WOMEN', 'ADULT WOMEN'),
-                         ('ADULT MEN', 'ADULT MEN'), ('CHILDREN MIX', 'CHILDREN MIX'), ('FATHERS','FATHERS'),
-                         ('MOTHERS','MOTHERS')
+                         ('ADULT MEN', 'ADULT MEN'), ('CHILDREN MIX', 'CHILDREN MIX'), ('FATHERS', 'FATHERS'),
+                         ('MOTHERS', 'MOTHERS')
                          )
 
     participant_id = models.AutoField(primary_key=True)

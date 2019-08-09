@@ -9,7 +9,7 @@
             {{ form.as_table }}
         </table>
         <input type="submit" value="Submit" class="btn btn-secondary">
-                {% if get_redirect == 1 %}
+        {% if get_redirect == 1 %}
             <a href="{% url 'vignette_list' %}" id="Cancel" name="Cancel" class="btn btn-secondary">Cancel</a>
         {% else %}
             <a href="{{ vignette.get_absolute_url }}" id="Cancel" name="Cancel" class="btn btn-secondary">Cancel</a>
