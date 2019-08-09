@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('client_id', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=100)),
-                ('type', models.CharField(blank=True, max_length=50, null=True)),
+                ('type', models.CharField(blank=False, max_length=50, null=False)),
             ],
             options={
                 'db_table': 'client',
@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('project_id', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=200)),
                 ('project_type', models.CharField(max_length=20, blank=False, null=False)),
-                ('completion_date', models.DateField()),
+                ('completion_date', models.DateField(blank=True, null=True)),
                 ('country', models.CharField(max_length=50)),
                 ('client', models.ForeignKey(to='UI.Client', null=False, on_delete=models.CASCADE)),
             ],
@@ -43,8 +43,8 @@ class Migration(migrations.Migration):
             name='DataSource',
             fields=[
                 ('data_source_id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=50)),
-                ('data_source_type', models.CharField(blank=True, max_length=19, null=True)),
+                ('name', models.CharField(max_length=200, blank=False, null=False)),
+                ('data_source_type', models.CharField(max_length=19, blank=False, null=False)),
                 ('acquisition_date', models.DateField(blank=True, null=True)),
                 ('project', models.ForeignKey(to='UI.Project', null=False, on_delete=models.CASCADE)),
                 ('province', models.CharField(blank=True, max_length=50, null=True)),
@@ -115,8 +115,8 @@ class Migration(migrations.Migration):
             name='Vignette',
             fields=[
                 ('vignette_id', models.AutoField(primary_key=True, serialize=False)),
-                ('vignette_type', models.CharField(blank=True, max_length=50, null=True)),
-                ('vignette_description', models.CharField(blank=False, max_length=200, null=False)),
+                ('vignette_type', models.CharField(blank=False, max_length=50, null=False)),
+                ('vignette_description', models.CharField(blank=False, max_length=255, null=False)),
             ],
             options={
                 'db_table': 'vignette',

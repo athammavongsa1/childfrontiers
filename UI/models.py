@@ -109,7 +109,7 @@ class Project(models.Model):
     project_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
     project_type = models.CharField(max_length=20, choices=project_types, blank=False, null=False)
-    completion_date = models.DateField(blank=False, null=False)
+    completion_date = models.DateField(blank=True, null=True)
     country = models.CharField(max_length=50, choices=project_countries, blank=False, null=False)
     client = models.ForeignKey(Client, models.DO_NOTHING)
     team = models.ManyToManyField('Employee', through='ProjectDataSourceEmployee')
@@ -133,7 +133,7 @@ class DataSource(models.Model):
     data_source_types = (('focus group', 'focus group'), ('survey', 'survey'))
 
     data_source_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50, blank=False, null=False)
+    name = models.CharField(max_length=200, blank=False, null=False)
     data_source_type = models.CharField(max_length=19, choices=data_source_types, blank=False, null=False)
     acquisition_date = models.DateField(blank=True, null=True)
     project = models.ForeignKey(Project, models.DO_NOTHING)
@@ -193,7 +193,9 @@ class Participant(models.Model):
                          ('CHILD PROTECTION NETWORK', 'CHILD PROTECTION NETWORK'), ('SOCIAL WORKER', 'SOCIAL WORKER'),
                          ('PARA SOCIAL WORKER', 'PARA SOCIAL WORKER'), ('NGO STAFF', 'NGO STAFF'),
                          ('GOVERNMENT OFFICIAL', 'GOVERNMENT OFFICIAL'), ('ADULT WOMEN', 'ADULT WOMEN'),
-                         ('ADULT MEN', 'ADULT MEN'), ('CHILDREN MIX', 'CHILDREN MIX'))
+                         ('ADULT MEN', 'ADULT MEN'), ('CHILDREN MIX', 'CHILDREN MIX'), ('FATHERS','FATHERS'),
+                         ('MOTHERS','MOTHERS')
+                         )
 
     participant_id = models.AutoField(primary_key=True)
     participant_type = models.CharField(max_length=30, choices=participant_types, blank=False, null=False)
@@ -289,7 +291,7 @@ class Vignette(models.Model):
 
     vignette_id = models.AutoField(primary_key=True)
     vignette_type = models.CharField(max_length=50, choices=vignette_types, blank=False, null=False)
-    vignette_description = models.CharField(max_length=200, blank=False, null=False)
+    vignette_description = models.CharField(max_length=255, blank=False, null=False)
 
     # A function to send url requests to vignette detail page.
     def get_absolute_url(self):
